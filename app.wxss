@@ -1,0 +1,11 @@
+@import './weui.wxss';
+/**app.wxss**/
+.container {
+  box-sizing: border-box;
+} 
+.padtop20{
+  padding-top: 20rpx;
+}
+page{
+    background-color: #F8F8F8;
+}

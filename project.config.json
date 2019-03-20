@@ -1,0 +1,92 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.6.2",
+	"appid": "wxc352553bb06943ac",
+	"projectname": "%E4%B8%89%E5%8F%AA%E5%B0%8F%E5%85%94%E4%BC%9A%E5%91%98%E9%A2%84%E7%BA%A6",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 6,
+			"list": [
+				{
+					"id": -1,
+					"name": "约课记录",
+					"pathName": "pages/records/records",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "课程首页",
+					"pathName": "pages/courses/courses",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "成功页",
+					"pathName": "pages/msgsuccess/msgsuccess",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "约课失败页",
+					"pathName": "pages/msgwarn/msgwarn",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "约课失败页",
+					"pathName": "pages/reg/reg",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "约课失败页",
+					"pathName": "pages/myinfo/myinfo",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "选课",
+					"pathName": "pages/reservation/reservation",
+					"scene": null
+				}
+			]
+		}
+	}
+}

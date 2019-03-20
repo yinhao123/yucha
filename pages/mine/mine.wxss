@@ -1,0 +1,31 @@
+/* pages/mine/mine.wxss */
+.user-info{
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  background-color: #fff;
+  padding: 20rpx;
+}
+.user-info .headIcon image{
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 75rpx;
+}
+.user-info .user-name{
+  padding: 20rpx;
+}
+.mine-func{
+  padding-top: 20rpx;
+}
+.navbg{
+  background: #fff;
+}
+.navbg view{
+  font-size: 32rpx;
+}
+.logout{
+  padding: 20rpx;
+}
+.weui-footer {
+  margin-top: 80%;
+}

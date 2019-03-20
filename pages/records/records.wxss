@@ -1,0 +1,4 @@
+/* pages/records/records.wxss */
+.weui-form-preview {
+  margin-bottom: 50rpx;
+}

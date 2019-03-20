@@ -1,0 +1,15 @@
+/* pages/reg/reg.wxss */
+@import "/weui.wxss";
+.weui-input {
+min-height:1.58823529em;
+line-height:1.58823529em;
+margin-left:80rpx;
+}
+.btn-area{
+  
+  margin-top: 50rpx;
+ 
+}
+button {
+  width: 80%;
+}

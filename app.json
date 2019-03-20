@@ -1,0 +1,48 @@
+{
+
+  "pages":[
+    
+    "pages/index/index",
+    "pages/mine/mine",
+    "pages/courses/courses",
+    "pages/reservation/reservation",
+    "pages/logs/logs",
+    "pages/records/records",
+    "pages/myinfo/myinfo",
+    "pages/msgsuccess/msgsuccess",
+    "pages/msgwarn/msgwarn",
+    "pages/reg/reg"
+
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "三只小兔会员预约",
+    "navigationBarTextStyle":"white"
+  },
+    "tabBar": {
+      "color": "#a9b7b7",
+      "selectedColor": "#1aad16",
+      "borderStyle": "white",
+      "list": [
+        {
+          "selectedIconPath": "img/indexsel.png",
+          "iconPath": "img/index.png",
+          "pagePath": "pages/index/index",
+          "text": "首页"
+        },
+        {
+          "selectedIconPath": "img/cursorsel.png",
+          "iconPath": "img/cursor.png",
+          "pagePath": "pages/reservation/reservation",
+          "text": "约课"
+        },
+        {
+          "selectedIconPath": "img/minesel.png",
+          "iconPath": "img/mine.png",
+          "pagePath": "pages/mine/mine",
+          "text": "我的"
+        }
+      ]
+    }
+}

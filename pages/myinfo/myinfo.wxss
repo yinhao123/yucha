@@ -1,0 +1,5 @@
+/* pages/myinfo/myinfo.wxss */
+.weui-cell__bd{
+  text-align:center;
+  color: #bbbbbb;
+}

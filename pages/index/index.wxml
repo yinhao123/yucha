@@ -1,0 +1,73 @@
+<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 授权登录 </button>
+<block wx:else>
+  <view class="container">
+    <view class="page-section page-section-spacing swiper">
+      <swiper
+        indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}"
+        interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px">
+        <block wx:for="{{imgs}}" wx:key="*this">
+          <swiper-item>
+            <!-- <view class="swiper-item {{item}}"></view> -->
+            <image class='swiper-item' src="../../{{item}}"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+  <view class='container padtop20'>
+  <!-- <navigator url='/pages/reservation/reservation' open-type="switchTab" hover-class="other-navigator-hover"> -->
+      <view class='navTab'>
+      
+          <view class='item' bindtap='appointCourses'>
+              <image src='../../img/date.png'></image>
+              <text>预约课程</text>
+          </view>
+          <view class='item' bindtap='coursesList'>
+              <image src='../../img/list.png'></image>
+              <text>课程列表</text>
+          </view>
+     
+      </view>   
+      <!-- </navigator> -->
+  </view>
+  <view class='container padtop20'>
+          <view class="weui-panel weui-panel_access">
+            <view class="page">
+ <rich-text nodes="{{nodes}}" bindtap="tap"></rich-text>
+    <!-- <view class="page__bd">
+        <view class="weui-article">
+            <text>大标题</text>
+            <view>
+                <h2 class="title">章标题</h2>
+                <view>
+                    <text>1.1 节标题</text>
+                    <view>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat.
+                    </view>
+                    <view>
+                        <image src="/images/pic_article.png"></image>
+                        <image src="/images/pic_article.png"></image>
+                    </view>
+                </view>
+                <view>
+                    <text>1.2 节标题</text>
+                    <text>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </text>
+                </view>
+            </view>
+        </view>
+    </view> -->
+    <!-- <view class="page__ft">
+        <view href="javascript:home()"><image src="/images/icon_footer_link.png" /></view>
+    </view> -->
+</view>
+          </view>
+  </view>
+</block>  

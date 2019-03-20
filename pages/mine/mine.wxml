@@ -1,0 +1,33 @@
+<!--pages/mine/mine.wxml-->
+<view class='container'>
+    <view class='user-info'>
+      <view class='headIcon'>
+          <image src="{{userInfo.avatarUrl}}"></image>
+      </view>
+      <view class='user-name'>
+          <text>{{userInfo.nickName}}</text>
+      </view>
+    </view>
+</view>
+<view class='container mine-func'>
+  <navigator class="weui-cell navbg" url="/pages/records/records"role="navigation"aria-label="">
+    <view class="weui-cell__bd"role=""aria-label="">约课记录</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access"role=""aria-label=""></view>
+  </navigator>
+  <!-- <navigator class="weui-cell navbg" url=""role="navigation"aria-label="">
+    <view class="weui-cell__bd"role=""aria-label="">我的会员卡</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access"role=""aria-label=""></view>
+  </navigator> -->
+  <navigator class="weui-cell navbg" url="/pages/myinfo/myinfo"role="navigation"aria-label="">
+    <view class="weui-cell__bd"role=""aria-label="">我的信息</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access"role=""aria-label=""></view>
+  </navigator>
+</view>
+<!-- <view class='container logout'>
+    <button class="weui-btn" type="warn">退出登录</button>
+</view> -->
+
+
+ <view class="weui-footer" >
+            <view class="weui-footer__text">Copyright© 2019 三只小兔</view>
+       </view>

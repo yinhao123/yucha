@@ -1,0 +1,62 @@
+/* pages/courses/courses.wxss */
+
+page {
+  height: 100%;
+  font-size: 32rpx;
+  line-height: 1.6;
+}
+
+.page-section{
+  width: 100%;
+  margin-bottom: 60rpx;
+}
+.page-section_center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.page-section:last-child{
+  margin-bottom: 0;
+}
+.page-section-gap{
+  box-sizing: border-box;
+  padding: 0 30rpx;
+}
+.page-section-spacing{
+  box-sizing: border-box;
+  /* padding: 0 80rpx; */
+}
+.page-section-title{
+  font-size: 28rpx;
+  color: #999999;
+  margin-bottom: 10rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}
+swiper{
+  height: 300rpx;
+}
+.swiper-item{
+  display: block;
+  height: 300rpx;
+  width: 100%;
+}
+.navTab{
+  flex:none;
+  display:flex;
+  background:#fff;
+  width:100%;
+ align-items: center;
+}
+.navTab .item{
+  height:110rpx;
+  flex:1;
+  text-align:center;
+  padding-top:10rpx;
+}
+.navTab .item image{
+  width:56rpx;
+  height:46rpx;
+  display:block;
+  margin:0 auto;
+}

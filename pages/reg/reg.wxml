@@ -1,0 +1,34 @@
+<!--pages/reg/reg.wxml-->
+<!-- 注册页面 -->
+
+<view class='container'>
+<form bindsubmit="formSubmit" bindreset="formReset">
+ <view class="weui-cells weui-cells_form">
+         <view class="weui-cell">
+                <view class="weui-cell__hd"><text class="weui-label">姓名</text></view>
+                <view class="weui-cell__bd">
+                    <input name='username' class="weui-input" type="text"  placeholder="请输入你的姓名"/>
+                </view>
+            </view>
+             <view class="weui-cell">
+                <view class="weui-cell__hd"><text class="weui-label">手机</text></view>
+                <view class="weui-cell__bd">
+                    <input name='telephone' class="weui-input" type="number"  placeholder="请输入你的手机号"/>
+                </view>
+            </view>
+             <view class="weui-cell">
+                <view class="weui-cell__hd"><text class="weui-label">性别</text></view>
+                <view class="weui-cell__bd">
+                    <input name='sex' class="weui-input"  type="text"  placeholder="请选择你的性别"/>
+                </view>
+          
+
+  </view>
+  </view>
+             <view class="btn-area">
+              <button type='primary' form-type="submit">确定</button>
+              
+             </view>
+ </form>
+
+</view>
