@@ -69,6 +69,6 @@ App({
   globalData: {
     userInfo: null,
     BaseUrl:"47.104.243.243:8080", // 现在这个没啥用，定义访问域名在utils中  :）
-    openid:1
+    openid:null
   }
 })
