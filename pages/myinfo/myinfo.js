@@ -1,5 +1,6 @@
 // pages/myinfo/myinfo.js
 var utils = require('../../utils/util.js');
+var app = getApp();
 Page({
 
   /**
@@ -14,8 +15,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var openid = app.globalData.openid;
     var webData = {
-      "openid":this.data.openid
+      "openid":openid
     }
     var that = this;
     utils.getWebDataWithPostOrGet({

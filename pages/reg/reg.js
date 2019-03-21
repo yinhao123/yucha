@@ -1,5 +1,6 @@
 // pages/reg/reg.js
-var utils = require('../../utils/util.js')
+var utils = require('../../utils/util.js');
+var app = getApp();
 Page({
 
   /**
@@ -67,11 +68,12 @@ Page({
   formSubmit(e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
     // 注册信息
+    var openid = app.globalData.openid;
     var webData = {
       "username": e.detail.value.username,
       "telephone": e.detail.value.telephone,
       "sex": e.detail.value.sex,
-      "openid":'896563232'
+      "openid":openid
     }
     var that = this;
     utils.getWebDataWithPostOrGet({
