@@ -30,6 +30,7 @@ Page({
       url: '../logs/logs'
     })
   },
+
   onLoad: function () {
     // 请求该课程相关的信息
     var webData = {
