@@ -49,7 +49,7 @@ Page({
         that.setData({
           classInfo: data.data.classinfo,
           node:data.data.classinfo.details,
-          // imgs: [+data.data.classinfo.imgcode]
+          imgs: [data.data.classinfo.imgcode]
         })
       }
     })
