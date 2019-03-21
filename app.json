@@ -2,8 +2,9 @@
 
   "pages":[
     "pages/courses/courses",
-    "pages/reservation/reservation",
+    "pages/courses/courses",
     "pages/index/index",
+    "pages/reservation/reservation",
     "pages/mine/mine",
     "pages/logs/logs",
     "pages/records/records",

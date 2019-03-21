@@ -21,7 +21,8 @@ Page({
     duration: 500,
     previousMargin: 0,
     nextMargin: 0,
-    list:null
+    list:null,
+    isMember:false
   },
   //事件处理函数
   bindViewTap: function () {
@@ -30,7 +31,11 @@ Page({
     })
   },
   onLoad: function () {
-  
+    if(!this.isMember){
+        wx.navigateTo({
+          url: '../reg/reg',
+        })
+    }
     this.setData({
       icon20: base64.icon20,
       icon60: base64.icon60
