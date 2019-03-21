@@ -1,7 +1,7 @@
 {
 
   "pages":[
-    
+    "pages/courses/courses",
     "pages/courses/courses",
     "pages/index/index",
     "pages/reservation/reservation",
@@ -28,7 +28,7 @@
         {
           "selectedIconPath": "img/indexsel.png",
           "iconPath": "img/index.png",
-          "pagePath": "pages/index/index",
+          "pagePath": "pages/courses/courses",
           "text": "首页"
         },
         {

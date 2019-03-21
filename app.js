@@ -16,17 +16,18 @@ App({
           if (res.code) {
             // 发起网络请求
             wx.request({
-              url: utils.BaseUrl+"/getopenid",
+              url:"http://47.104.243.243:8080/AdminSystem/eyas/wechat/getOpenid",
               data: {
                 code: res.code
               },
               success(res) {
-                console.log(res.data)
-                App.globalData.openid = res.data.openid;
+                console.log(res.data.data.openid)
+
+                getApp().globalData.openid = res.data.data.openid
                 //将这个openid保存在本地缓存中
                 wx.setStorage({
                   key: 'openid',
-                  data: res.data
+                  data: res.data.data.openid
                 })
               
               }
@@ -41,7 +42,6 @@ App({
             })
 
           }
-        
       }
     })
     // 获取用户信息
