@@ -162,17 +162,7 @@ Page(
 })
 
 var w = 1;
-// function mul(msg){
-//   console.log(msg);
-//   if(msg=="pre"){
-//      w=w-1;
-//     getDates(i)
-//   }else if(msg == "next"){
-//     w=w+1;
-//     getDates(w)
-//   }
-  
-// }
+
 function getDates(w) {
   // debugger;
   var new_Date = new Date()

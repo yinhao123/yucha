@@ -44,7 +44,6 @@ Page({
       success: function (data) {
         // console.log(url)
         console.log(data.data.classinfo);
-        var bsee = new Base64()
         let str1 = data.data.classinfo.imgcode.decode
         that.setData({
           classInfo: data.data.classinfo,
