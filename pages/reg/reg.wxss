@@ -13,3 +13,9 @@ margin-left:80rpx;
 button {
   width: 80%;
 }
+.selGen .weui-select{
+  border: none;
+  width: 400rpx;
+  /* padding: 0; */
+  margin-left: 48rpx;
+}

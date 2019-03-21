@@ -18,12 +18,18 @@
             </view>
              <view class="weui-cell">
                 <view class="weui-cell__hd"><text class="weui-label">性别</text></view>
-                <view class="weui-cell__bd">
+                <view class="weui-cell weui-cell_select">
+                    <view class="weui-cell__bd selGen">
+                        <picker bindchange="bindGenderChange" value="{{genderIndex}}" range="{{gender}}"  name="gender" >
+                            <view class="weui-select">{{gender[genderIndex]}}</view>
+                        </picker>
+                    </view>
+               </view>
+                <!-- <view class="weui-cell__bd">
                     <input name='sex' class="weui-input"  type="text"  placeholder="请选择你的性别"/>
-                </view>
-          
-
-  </view>
+                </view> -->
+                
+              </view>
   </view>
              <view class="btn-area">
               <button type='primary' form-type="submit">确定</button>
