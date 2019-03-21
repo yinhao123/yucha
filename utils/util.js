@@ -21,7 +21,7 @@ function getWebDataWithPostOrGet(model) {
     data: model.param,
     header: {
       "Content-Type": "application/json",
-      "openid":"adfaasfwf233"
+      "openid":getApp().globalData.openid
     },
     method: model.method,
     success: function (res) {
