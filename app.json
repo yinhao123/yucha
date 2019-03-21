@@ -1,11 +1,10 @@
 {
 
   "pages":[
-    
+    "pages/courses/courses",
     "pages/reservation/reservation",
     "pages/index/index",
     "pages/mine/mine",
-    "pages/courses/courses",
     "pages/logs/logs",
     "pages/records/records",
     "pages/myinfo/myinfo",
@@ -28,7 +27,7 @@
         {
           "selectedIconPath": "img/indexsel.png",
           "iconPath": "img/index.png",
-          "pagePath": "pages/index/index",
+          "pagePath": "pages/courses/courses",
           "text": "首页"
         },
         {
