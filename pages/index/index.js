@@ -42,11 +42,14 @@ Page({
       param: webData,
       method: "GET",
       success: function (data) {
+        // console.log(url)
         console.log(data.data.classinfo);
+        var bsee = new Base64()
+        let str1 = data.data.classinfo.imgcode.decode
         that.setData({
           classInfo: data.data.classinfo,
           node:data.data.classinfo.details,
-          imgs:[data.data.classinfo.imgcode]
+          // imgs: [+data.data.classinfo.imgcode]
         })
       }
     })

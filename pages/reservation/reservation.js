@@ -19,7 +19,9 @@ Page(
     hday :formate(),
     //currentData: getDay(),
     currentData: getDay(),
-    list:null
+    list:null,
+    switchWeekpre:false,
+    switchWeeknext:true,
   },
     
   selDay(e) {
@@ -27,6 +29,16 @@ Page(
     console.log(e);
     this.setData({
       currentData: e.currentTarget.dataset.index
+    })
+  },
+  // 上一周下周选择
+  selWeek(e){
+    console.log(e.currentTarget.dataset.week);
+    var msg = e.currentTarget.dataset.week;
+    // getDates();
+    
+    this.setData({
+      hday: formate(msg),
     })
   },
   /**
@@ -68,8 +80,6 @@ Page(
   onShow: function () {
     this.calendar.jump();
     switchView();
-    
-
     console.log(getSelectedDay());
     
   },
@@ -151,9 +161,22 @@ Page(
   
 })
 
-function getDates() {
+var w = 1;
+// function mul(msg){
+//   console.log(msg);
+//   if(msg=="pre"){
+//      w=w-1;
+//     getDates(i)
+//   }else if(msg == "next"){
+//     w=w+1;
+//     getDates(w)
+//   }
+  
+// }
+function getDates(w) {
+  debugger;
   var new_Date = new Date()
-  var timesStamp = new_Date.getTime();
+  var timesStamp = new_Date.getTime()+w*7*24*60*60*1000;
   var currenDay = new_Date.getDay();
   var dates = [];
   for (var i = 0; i < 7; i++) {
@@ -162,10 +185,37 @@ function getDates() {
   return dates
 }
 //格式化时间
-function formate(){
-  // debugger;
+function formate(msg){
+  if (msg) {
+    if (msg == "pre") {
+      w = w - 1;
+      if(w<1){
+        wx.showToast({
+          title: '上周已过去啦',
+          icon: 'loading',
+          duration: 2000
+        })
+        w=1;
+        return;
+      }
+    } else if (msg == "next") {
+      w = w + 1;
+      // getDates(w)
+      if(w>4){
+        wx.showToast({
+          title: '下周再来吧',
+          icon: 'loading',
+          duration: 2000
+        })
+        w = 4;
+        return;
+      }
+    }
+  } else {
+    w = 1;
+  }
   var formates = {}
-  var dayArr = getDates();
+  var dayArr = getDates(w);
   for(var i = 0; i<dayArr.length; i++){
     var days = []
     // console.log(i);
