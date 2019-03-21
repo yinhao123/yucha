@@ -7,9 +7,10 @@
   padding: 20rpx;
 }
 .user-info .headIcon image{
-  width: 150rpx;
-  height: 150rpx;
-  border-radius: 75rpx;
+  width:100rpx;
+  height:100rpx;
+  border-radius:50rpx;
+
 }
 .user-info .user-name{
   padding: 20rpx;
@@ -27,5 +28,5 @@
   padding: 20rpx;
 }
 .weui-footer {
-  margin-top: 80%;
+  margin-top: 90%;
 }

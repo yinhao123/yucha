@@ -17,14 +17,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   // console.log(app.globalData);
-   var openid = wx.getStorageSync("openid")
-   //console.log("openid".openid);
     var userData = {
       openid: app.globalData.openid
     }
-    // console.log(wx.getStorageInfo('openid'))
-  //  console.log("openid".app.globalData.openid);
+   
     var that = this;
     utils.getWebDataWithPostOrGet({
       url: "AdminSystem/eyas/wechat/getUserInfoByOpenid",
@@ -38,8 +34,9 @@ Page({
       }
     })
     console.log(this.data.userid)
+    var userid = getApp().globalData.user.data.userInfo.userid;
     var webData={
-      "userid": 8
+      "userid": userid
     }
     var that  = this; 
     utils.getWebDataWithPostOrGet({

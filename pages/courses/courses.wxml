@@ -5,7 +5,7 @@
               <view class="weui-panel__bd">
  
                 <view wx:for="{{list}}" wx:key="index">
-                  <navigator url="/pages/index/index" open-type="switchTab" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                  <navigator url="/pages/index/index?cassid={{item.classid}}" open-type="navigate" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
                       <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
                           <image class="weui-media-box__thumb" src="{{item.imgcode}}" />
                       </view>

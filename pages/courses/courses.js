@@ -31,6 +31,23 @@ Page({
     })
   },
   onLoad: function () {
+    // 加个判断，如果去请求userid
+    console.log("课程列表");
+    try {
+      const value = wx.getStorageSync('userInfo')
+      if (value) {
+        console.log("从本地缓存中读取userid成功".value)
+        this.setData({
+          isMember:value.success
+        })
+        
+      }
+    } catch (e) {
+      console.log("从本地缓存中读取userid失败")
+    }
+
+console.log("console this.isMember");
+
     if(!this.isMember){
         wx.navigateTo({
           url: '../reg/reg',

@@ -63,3 +63,6 @@ swiper{
   display:block;
   margin:0 auto;
 }
+.ricetext {
+  padding: 30rpx;
+}

@@ -19,7 +19,8 @@ Page(
     hday :formate(),
     //currentData: getDay(),
     currentData: getDay(),
-    list:null
+    list:null,
+    classinfo:null
   },
     
   selDay(e) {
@@ -42,7 +43,33 @@ Page(
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function (e) {
+
+    try{
+      let classinfo = wx.getStorageSync("classinfo");
+      this.setData({
+        classinfo:classinfo
+      })
+      if(!classinfo){
+        wx.showModal({
+          title: '系统提示',
+          content: '请先选择一个课程',
+          success(res) {
+            if (res.confirm) {
+              console.log('用户点击确定');
+              wx.switchTab({
+                url: '/pages/courses/courses',
+              })
+
+            } else if (res.cancel) {
+              console.log('用户点击取消');
+            }
+          }
+        })
+      }
+    }catch(e){
+      // todo
+    }
     initCalendar(conf);
     switchView("month");
     
@@ -75,10 +102,12 @@ Page(
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    this.calendar.jump();
-    switchView();
-    console.log(getSelectedDay());
+  onShow: function (e) {
+    console.log(e);
+    console.log(e);
+    // this.calendar.jump();
+    // switchView();
+    // console.log(getSelectedDay());
     
   },
 

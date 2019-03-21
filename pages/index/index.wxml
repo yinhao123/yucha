@@ -33,7 +33,9 @@
   <view class='container padtop20'>
           <view class="weui-panel weui-panel_access">
             <view class="page">
+            <view class='ricetext'>
  <rich-text nodes="{{nodes}}" bindtap="tap"></rich-text>
+ </view>
     <!-- <view class="page__bd">
         <view class="weui-article">
             <text>大标题</text>

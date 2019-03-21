@@ -22,7 +22,6 @@ App({
               },
               success(res) {
                 console.log(res.data.data.openid)
-
                 getApp().globalData.openid = res.data.data.openid
                 //将这个openid保存在本地缓存中
                 wx.setStorage({
@@ -30,6 +29,28 @@ App({
                   data: res.data.data.openid
                 })
               
+                var userData = {
+                  openid: res.data.data.openid
+                }
+
+                utils.getWebDataWithPostOrGet({
+                  url: "AdminSystem/eyas/wechat/getUserInfoByOpenid",
+                  param: userData,
+                  method: "GET",
+                  success: function (data) {
+                    console.log(data);
+                   
+                    getApp().globalData.user = data
+                    wx.setStorage({
+                      key: 'user',
+                      data: data
+                    })
+                  }
+                })
+
+
+
+
               }
             })
           } else {
@@ -68,7 +89,8 @@ App({
   },
   globalData: {
     userInfo: null,
-    BaseUrl:"47.104.243.243:8080", // 现在这个没啥用，定义访问域名在utils中  :）
-    openid:null
+    BaseUrl:"http://47.104.243.243:8080", // 现在这个没啥用，定义访问域名在utils中  :）
+    openid:null,
+    user:null
   }
 })
