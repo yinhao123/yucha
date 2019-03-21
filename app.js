@@ -1,16 +1,48 @@
 //app.js
 
+var utils = require('/utils/util.js');
+
 App({
   onLaunch: function () {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
+    var that = this;
     // 登录
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        
+          if (res.code) {
+            // 发起网络请求
+            wx.request({
+              url: utils.BaseUrl+"/getopenid",
+              data: {
+                code: res.code
+              },
+              success(res) {
+                console.log(res.data)
+                App.globalData.openid = res.data.openid;
+                //将这个openid保存在本地缓存中
+                wx.setStorage({
+                  key: 'openid',
+                  data: res.data
+                })
+              
+              }
+            })
+          } else {
+            console.log('登录失败！' + res.errMsg);
+           
+            wx.showToast({
+              title: '系统出bug了',
+              icon: 'none',
+              duration: 2000
+            })
+
+          }
+        
       }
     })
     // 获取用户信息
@@ -37,7 +69,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    BaseUrl:"47.104.243.243:8080",
-
+    BaseUrl:"47.104.243.243:8080", // 现在这个没啥用，定义访问域名在utils中  :）
+    openid:null
   }
 })
