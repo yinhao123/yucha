@@ -22,7 +22,8 @@ Page({
     previousMargin: 0,
     nextMargin: 0,
     list:null,
-    isMember:false
+    isMember:false,
+    openId:null
   },
   //事件处理函数
   bindViewTap: function () {
@@ -31,28 +32,46 @@ Page({
     })
   },
   onLoad: function () {
-    // 加个判断，如果去请求userid
-    console.log("课程列表");
-    try {
-      const value = wx.getStorageSync('userInfo')
-      if (value) {
-        console.log("从本地缓存中读取userid成功".value)
-        this.setData({
-          isMember:value.success
-        })
-        
-      }
-    } catch (e) {
-      console.log("从本地缓存中读取userid失败")
-    }
-
-console.log("console this.isMember");
-
-    if(!this.isMember){
-        wx.navigateTo({
+    //获取openid
+    // app.getOpenid().then(function (res) {
+    //   console.log("res.status");
+    //   console.log(res.status);
+    //   if (res.status == 200) {
+    //     that.setData({
+    //       openId: wx.getStorageSync('openid')
+    //     })
+    //     console.log("openid");
+    //   console.log(this.data.openId);
+    //   } else {
+    //     console.log(res.data);
+    //   }
+    // });
+   
+    var that = this;
+    wx.showLoading({
+      title: '加载中',
+    })
+    setTimeout(function () {
+      console.log(app.globalData);
+      that.setData({
+      //  statusResult: app.globalData.statusResult
+        isMember:app.globalData.user.success
+      })
+      console.log("isMember");
+      console.log(that.data.isMember);
+     
+      wx.hideLoading();
+      if (!that.data.isMember) {
+        wx.redirectTo({
           url: '../reg/reg',
         })
-    }
+      }
+
+    }, 1000)
+   
+
+
+  
     this.setData({
       icon20: base64.icon20,
       icon60: base64.icon60

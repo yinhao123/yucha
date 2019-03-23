@@ -16,6 +16,14 @@ Page({
    */
   onLoad: function (options) {
     var openid = app.globalData.openid;
+    if(openid==null){
+      wx.showLoading({
+        title: '加载中',
+      })
+      setTimeout(function () {
+        wx.hideLoading()
+      }, 2000)
+    }
     var webData = {
       "openid":openid
     }

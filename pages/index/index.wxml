@@ -22,10 +22,10 @@
               <image src='../../img/date.png'></image>
               <text>预约课程</text>
           </view>
-          <view class='item' bindtap='coursesList'>
+          <!-- <view class='item' bindtap='coursesList'>
               <image src='../../img/list.png'></image>
               <text>课程列表</text>
-          </view>
+          </view> -->
      
       </view>   
       <!-- </navigator> -->

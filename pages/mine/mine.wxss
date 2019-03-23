@@ -28,5 +28,5 @@
   padding: 20rpx;
 }
 .weui-footer {
-  margin-top: 90%;
+  margin-top: 120%;
 }
