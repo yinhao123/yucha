@@ -1,0 +1,25 @@
+<!--pages/login/login.wxml-->
+<view class='container'>
+
+</view>
+
+<view class="flex solid-bottom padding justify-center">
+      
+         <view class="cu-avatar xl round margin-left  shadow" style="background-image:url(/images/avatar.jpg);"></view>
+         
+
+  
+     </view>
+
+<view>
+<view class="flex solid-bottom padding justify-center juli">
+         
+         <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 点击获取授权登录 </button>
+         <block wx:else>
+         <navigator url='/pages/courses/courses' open-type="switchTab">
+         
+         <button type='primary' > 点击进入课程列表</button>
+         </navigator>
+         </block>
+   </view>
+   </view>

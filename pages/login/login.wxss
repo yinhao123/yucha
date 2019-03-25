@@ -1,0 +1,7 @@
+/* pages/login/login.wxss */
+.container {
+  height: 200rpx;
+}
+.juli {
+  margin-top: 200rpx;
+}
