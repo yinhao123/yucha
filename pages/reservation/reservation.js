@@ -1,10 +1,71 @@
 // pages/reservation/reservation.js
 var utils = require('../../utils/util.js');
 import initCalendar from '../../component/calendar/main.js';
-import { getSelectedDay  } from '../../component/calendar/main.js';
+
+// import { getSelectedDay  } from '../../component/calendar/main.js';
+
 import { switchView } from '../../component/calendar/main.js';
+import { jump } from '../../component/calendar/main.js';
+import { enableArea, enableDays } from '../../component/calendar/main.js';
+import { getSelectedDay } from '../../component/calendar/main.js';
+
 const conf = {
   disablePastDay: true, // 是否禁选过去日期
+  /**
+  * 选择日期后执行的事件
+  * @param { object } currentSelect 当前点击的日期
+  * @param { array } allSelectedDays 选择的所有日期（当mulit为true时，才有allSelectedDays参数）
+  */
+  // afterTapDay: (currentSelect, allSelectedDays) => {
+  //   console.log("切换了日期");
+  //   console.log(currentSelect);
+  //   console.log(allSelectedDays);
+  //  },
+  /**
+   * 当改变月份时触发
+   * @param { object } current 当前年月
+   * @param { object } next 切换后的年月
+   */
+  // whenChangeMonth: (current, next) => {
+  //   console.log("改变了月份");
+  //   switchView("week");
+  //  },
+  /**
+   * 日期点击事件（此事件会完全接管点击事件）
+   * @param { object } currentSelect 当前点击的日期
+   * @param { object } event 日期点击事件对象
+   */
+  onTapDay(currentSelect, event) {
+    console.log("点击了日期");
+    console.log(currentSelect.year + "-" + currentSelect.month + "-" + currentSelect.day);
+    let thisdata = currentSelect.year + "-" + currentSelect.month + "-" + currentSelect.day;
+    console.log(currentSelect);
+    console.log(event);
+    var webData = {
+      // "selectDate": getNowFormatDate(),
+      "selectDate": thisdata,
+    }
+
+    var that = this;
+    utils.getWebDataWithPostOrGet({
+      url: "AdminSystem/eyas/wechat/queryRecordInfoForPage",
+      param: webData,
+      method: "GET",
+      success: function (data) {
+        console.log(data);
+      // 缓存到本地
+      wx.setStorage({
+        key: 'daychoose',
+        data: data.data,
+      })
+      }
+    })
+  },
+  /**
+   * 日历初次渲染完成后触发事件，如设置事件标记
+   * @param { object } ctx 当前页面实例
+   */
+  // afterCalendarRender(ctx) { },
 };
 
 Page(
@@ -14,6 +75,7 @@ Page(
    * 页面的初始数据
    */
   data: {
+   
     userid : 1,
     recordid:1,
     hday :formate(),
@@ -40,11 +102,12 @@ Page(
       hday: formate(msg),
     })
   },
+    
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
-
+ 
     try{
       let classinfo = wx.getStorageSync("classinfo");
       this.setData({
@@ -71,13 +134,13 @@ Page(
       // todo
     }
     initCalendar(conf);
-    switchView("month");
+   switchView("week");
     
     var webData = {
-      "selectDate": getNowFormatDate(),
-      // "selectDate": "2019-03-19",
+     // "selectDate": getNowFormatDate(),
+       "selectDate": "2019-03-19",
     }
-    console.log(webData)
+  
     var that = this;
     utils.getWebDataWithPostOrGet({
       url: "AdminSystem/eyas/wechat/queryRecordInfoForPage",
@@ -103,12 +166,10 @@ Page(
    * 生命周期函数--监听页面显示
    */
   onShow: function (e) {
-    console.log(e);
-    console.log(e);
-    // this.calendar.jump();
-    // switchView();
-    // console.log(getSelectedDay());
-    
+    console.log(getSelectedDay());
+    switchView("week");
+    console.log("onshow...");
+ 
   },
 
   /**
@@ -150,6 +211,9 @@ Page(
    */
   appointment: function ()
   {
+    // wx.navigateTo({
+    //   url: '/pages/msgsuccess/msgsuccess'
+    // })
     var that = this;
     wx.showModal({
       title: '约课提示',
@@ -159,7 +223,7 @@ Page(
           console.log('用户点击确定');
           // 请求约课信息
           var webData = {
-            "userid": 1,
+            "userid": 8,
             "recordid":1
           }
           var that = this;
@@ -171,11 +235,14 @@ Page(
               console.log(data.success);
               if (data.success){
                 // 跳转到约课成功的页面
-                wx.navigateTo({
+                wx.redirectTo({
                   url: '/pages/msgsuccess/msgsuccess'
                 })
               }else{
-                url: '/pages/msgwarn/msgwarn'
+                wx.redirectTo({
+                  url: '/pages/msgwarn/msgwarn'
+                })
+              
               }
             }
           })
@@ -188,18 +255,25 @@ Page(
   
 })
 
-var w = 1;
-
+var w = 0;
+var tttddd = utils.formatTime(new Date());
+// function getDates(todate = getCurrentMonthFirst()) {//todate默认参数是当前日期，可以传入对应时间
+//   var dateArry = [];
+//   for (var i = 0; i < 7; i++) {
+//     var dateObj = dateLater(todate, i);
+//     dateArry.push(dateObj)
+//   }
+//   return dateArry;
+// }
 function getDates(w) {
-  // debugger;
-  var new_Date = new Date()
+  var new_Date = new Date();
+  console.log(utils.formatTime(new_Date))
   var timesStamp = new_Date.getTime()+w*7*24*60*60*1000;
   var currenDay = new_Date.getDay();
   var dates = [];
   for (var i = 0; i < 7; i++) {
-    dates.push(new Date(timesStamp + 24 * 60 * 60 * 1000 * (i - (currenDay + 6) % 7)).toLocaleDateString().replace(/[年月]/g, '-').replace(/[日上下午]/g, ''));
+    dates.push(utils.formatTime(new Date(timesStamp + 24 * 60 * 60 * 1000 * (i - (currenDay + 6) % 7))));
   }
-  // console.log(dates);
   return dates
 }
 //格式化时间
@@ -207,7 +281,7 @@ function formate(msg){
   if (msg) {
     if (msg == "pre") {
       w = w - 1;
-      if(w<1){
+      if(w<0){
         wx.showToast({
           title: '上周已过去啦',
           icon: 'loading',
@@ -230,58 +304,58 @@ function formate(msg){
       }
     }
   } else {
-    w = 1;
+    w = 0;
   }
-  var formates = {}
   var dayArr = getDates(w);
+  console.log(dayArr);
   for(var i = 0; i<dayArr.length; i++){
     var days = []
     // console.log(i);
       if(i == 0){
         var week = "周一";
-        var day1 = dayArr[i].split("/");
+        var day1 = dayArr[i].split("-");
         var day2 = new Array(day1[1],day1[2]);
         var day3 = day2.join("-");
         days.push(week,day3);
         dayArr[i] = days;
       }else if(i == 1){
         var week = "周二";
-        var day1 = dayArr[i].split("/");
+        var day1 = dayArr[i].split("-");
         var day2 = new Array(day1[1], day1[2]);
         var day3 = day2.join("-");
         days.push(week, day3);
         dayArr[i] = days;
       } else if (i == 2) {
         var week = "周三";
-        var day1 = dayArr[i].split("/");
+        var day1 = dayArr[i].split("-");
         var day2 = new Array(day1[1], day1[2]);
         var day3 = day2.join("-");
         days.push(week, day3);
         dayArr[i] = days;
       } else if (i == 3) {
         var week = "周四";
-        var day1 = dayArr[i].split("/");
+        var day1 = dayArr[i].split("-");
         var day2 = new Array(day1[1], day1[2]);
         var day3 = day2.join("-");
         days.push(week, day3);
         dayArr[i] = days;
       } else if (i == 4) {
         var week = "周五";
-        var day1 = dayArr[i].split("/");
+        var day1 = dayArr[i].split("-");
         var day2 = new Array(day1[1], day1[2]);
         var day3 = day2.join("-");
         days.push(week, day3);
         dayArr[i] = days;
       } else if (i == 5) {
         var week = "周六";
-        var day1 = dayArr[i].split("/");
+        var day1 = dayArr[i].split("-");
         var day2 = new Array(day1[1], day1[2]);
         var day3 = day2.join("-");
         days.push(week, day3);
         dayArr[i] = days;
       } else if (i == 6) {
         var week = "周日";
-        var day1 = dayArr[i].split("/");
+        var day1 = dayArr[i].split("-");
         var day2 = new Array(day1[1], day1[2]);
         var day3 = day2.join("-");
         days.push(week, day3);

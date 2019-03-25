@@ -82,6 +82,8 @@ Component({
      * @param {!object} e 事件对象
      */
     tapDayItem(e) {
+      // console.log("日期点击事件" );
+      // console.log(e);
       const { idx, disable } = e.currentTarget.dataset;
       if (disable) return;
       let currentSelected = {}; // 当前选中日期

@@ -78,7 +78,7 @@ Page({
   chooseCourses: function () {
     // 跳转到课程列表
 
-    wx.redirectTo({
+    wx.switchTab({
       url: '/pages/courses/courses'
     })
   }

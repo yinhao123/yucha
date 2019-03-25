@@ -8,7 +8,7 @@
         <block wx:for="{{imgs}}" wx:key="*this">
           <swiper-item>
             <!-- <view class="swiper-item {{item}}"></view> -->
-            <image class='swiper-item' src="../../{{item}}"></image>
+            <image class='swiper-item' src="{{item}}"></image>
           </swiper-item>
         </block>
       </swiper>

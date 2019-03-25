@@ -12,7 +12,7 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     // background: ['demo-text-1', 'demo-text-2', 'demo-text-3'],
-    imgs: ['img/1.jpg', 'img/2.jpg', 'img/3.jpg', 'img/4.jpg'],
+  
     indicatorDots: true,
     vertical: false,
     autoplay: true,
@@ -24,6 +24,7 @@ Page({
     list:null,
     isMember:false,
     openId:null
+   
   },
   //事件处理函数
   bindViewTap: function () {
@@ -32,20 +33,7 @@ Page({
     })
   },
   onLoad: function () {
-    //获取openid
-    // app.getOpenid().then(function (res) {
-    //   console.log("res.status");
-    //   console.log(res.status);
-    //   if (res.status == 200) {
-    //     that.setData({
-    //       openId: wx.getStorageSync('openid')
-    //     })
-    //     console.log("openid");
-    //   console.log(this.data.openId);
-    //   } else {
-    //     console.log(res.data);
-    //   }
-    // });
+ 
    
     var that = this;
     wx.showLoading({
@@ -54,7 +42,6 @@ Page({
     setTimeout(function () {
       console.log(app.globalData);
       that.setData({
-      //  statusResult: app.globalData.statusResult
         isMember:app.globalData.user.success
       })
       console.log("isMember");
@@ -114,11 +101,11 @@ Page({
       success: function (data) {
         console.log(data.data.list);
         that.setData({
-          list: data.data.list
+          list: data.data.list,
+       
         });
       }
     })
-
   },
   getUserInfo: function (e) {
     console.log(e)

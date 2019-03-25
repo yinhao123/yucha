@@ -36,7 +36,7 @@
 }
 
 .pink-color {
-  color: #ff629a;
+  color: #09bb07;
 }
 
 .white-color {
@@ -174,7 +174,7 @@
 }
 
 .day-choosed-bg {
-  background-color: #ff629a;
+  background-color: #09bb07;
   transition: all 0.3s;
   animation-name: choosed;
   animation-duration: 0.5s;

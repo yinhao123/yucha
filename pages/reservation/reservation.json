@@ -1,8 +1,8 @@
 {
  
-  "usingComponents": {
-    "calendar": "/component/calendar/index"
-  },
-
+  
+    "usingComponents": {
+      "calendar": "../../component/calendar/index"
+    },
   "navigationBarTitleText": "在线选课"
 }
