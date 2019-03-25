@@ -1,10 +1,7 @@
 {
 
   "pages":[
-<<<<<<< HEAD
-   
-=======
->>>>>>> 82f8cdde765f1ae0f268716e32854602637175e4
+
     "pages/courses/courses",
     "pages/index/index",
     "pages/reservation/reservation",
@@ -14,14 +11,10 @@
     "pages/myinfo/myinfo",
     "pages/msgsuccess/msgsuccess",
     "pages/msgwarn/msgwarn",
-<<<<<<< HEAD
+
     "pages/reg/reg",
     "pages/login/login"
    
-
-=======
-    "pages/reg/reg"
->>>>>>> 82f8cdde765f1ae0f268716e32854602637175e4
   ],
   "window":{
     "backgroundTextStyle":"light",
