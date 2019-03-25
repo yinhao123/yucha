@@ -1,3 +1,8 @@
 {
+<<<<<<< HEAD
   "usingComponents": {}
+=======
+
+    "navigationBarTitleText": "授权登录"
+>>>>>>> 82f8cdde765f1ae0f268716e32854602637175e4
 }
