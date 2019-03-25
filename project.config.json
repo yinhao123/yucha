@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -14,7 +14,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.6.2",
 	"appid": "wxc352553bb06943ac",
-	"projectname": "%E4%B8%89%E5%8F%AA%E5%B0%8F%E5%85%94%E4%BC%9A%E5%91%98%E9%A2%84%E7%BA%A6",
+	"projectname": "%E4%B8%89%E5%8F%AA%E5%B0%8F%E5%85%94",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 9,
 			"list": [
 				{
 					"id": -1,
@@ -84,6 +84,27 @@
 					"id": -1,
 					"name": "选课",
 					"pathName": "pages/reservation/reservation",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "注册页面",
+					"pathName": "pages/reg/reg",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人中心",
+					"pathName": "pages/mine/mine",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人中心",
+					"pathName": "pages/login/login",
 					"scene": null
 				}
 			]

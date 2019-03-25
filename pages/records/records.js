@@ -1,20 +1,42 @@
 // pages/records/records.js
-var utils = require('../../utils/util.js')
+var app = getApp();
+var utils = require('../../utils/util.js');
+
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-      list:null
+      list:1,
+      userid:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var userData = {
+      openid: app.globalData.openid
+    }
+   
+    var that = this;
+    utils.getWebDataWithPostOrGet({
+      url: "AdminSystem/eyas/wechat/getUserInfoByOpenid",
+      param: userData,
+      method: "GET",
+      success: function (data) {
+        console.log(data.data.userInfo);
+        that.setData({
+          userid: data.data.userInfo.userid
+        });
+      }
+    })
+    console.log(this.data.userid)
+    var userid = getApp().globalData.user.data.userInfo.userid;
     var webData={
-      "userid": 1
+      "userid": userid
     }
     var that  = this; 
     utils.getWebDataWithPostOrGet({

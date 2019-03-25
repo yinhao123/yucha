@@ -22,12 +22,10 @@
                     <text class="weui-label">性别</text>
                 </view>
                 <view class="weui-cell__bd">
-                    <view class="weui-cell__hd"><text class="weui-label">
-                    <view wx:if="{{userInfo.sex == '1'}}">男</view>
-                      <view wx:elif="{{userInfo.sex == '2'}}">女</view>
-                      <view wx:else>未知</view>
-                    
-                    </text></view>
+                <view wx:if="{{userInfo.sex > 1}}">女
+                 
+                  </view>
+                   <view wx:else>男</view>
                 </view>
                
             </view>

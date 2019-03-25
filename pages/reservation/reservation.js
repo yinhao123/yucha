@@ -20,8 +20,7 @@ Page(
     //currentData: getDay(),
     currentData: getDay(),
     list:null,
-    switchWeekpre:false,
-    switchWeeknext:true,
+    classinfo:null
   },
     
   selDay(e) {
@@ -44,15 +43,41 @@ Page(
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function (e) {
+
+    try{
+      let classinfo = wx.getStorageSync("classinfo");
+      this.setData({
+        classinfo:classinfo
+      })
+      if(!classinfo){
+        wx.showModal({
+          title: '系统提示',
+          content: '请先选择一个课程',
+          success(res) {
+            if (res.confirm) {
+              console.log('用户点击确定');
+              wx.switchTab({
+                url: '/pages/courses/courses',
+              })
+
+            } else if (res.cancel) {
+              console.log('用户点击取消');
+            }
+          }
+        })
+      }
+    }catch(e){
+      // todo
+    }
     initCalendar(conf);
     switchView("month");
     
-
     var webData = {
-      "selectDate": "2019-03-19",
-     
+      "selectDate": getNowFormatDate(),
+      // "selectDate": "2019-03-19",
     }
+    console.log(webData)
     var that = this;
     utils.getWebDataWithPostOrGet({
       url: "AdminSystem/eyas/wechat/queryRecordInfoForPage",
@@ -77,10 +102,12 @@ Page(
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    this.calendar.jump();
-    switchView();
-    console.log(getSelectedDay());
+  onShow: function (e) {
+    console.log(e);
+    console.log(e);
+    // this.calendar.jump();
+    // switchView();
+    // console.log(getSelectedDay());
     
   },
 
@@ -162,17 +189,7 @@ Page(
 })
 
 var w = 1;
-// function mul(msg){
-//   console.log(msg);
-//   if(msg=="pre"){
-//      w=w-1;
-//     getDates(i)
-//   }else if(msg == "next"){
-//     w=w+1;
-//     getDates(w)
-//   }
-  
-// }
+
 function getDates(w) {
   // debugger;
   var new_Date = new Date()
@@ -182,6 +199,7 @@ function getDates(w) {
   for (var i = 0; i < 7; i++) {
     dates.push(new Date(timesStamp + 24 * 60 * 60 * 1000 * (i - (currenDay + 6) % 7)).toLocaleDateString().replace(/[年月]/g, '-').replace(/[日上下午]/g, ''));
   }
+  // console.log(dates);
   return dates
 }
 //格式化时间
@@ -275,12 +293,10 @@ function formate(msg){
 }
 //获得当前是周几
 function getDay(){
+  // debugger;
   var week;
   var weeks = new Date().getDay();  
   console.log(week);
-  // if(week==0){
-  //   return week;
-  // }
   switch(weeks){
       case 0:
       week = 6;
@@ -307,3 +323,18 @@ function getDay(){
   return week;
 }
 
+// 获取当前时间yyyy-mm-dd
+function getNowFormatDate() {
+  var date = new Date();
+  var seperator1 = "-";
+  var month = date.getMonth() + 1;
+  var strDate = date.getDate();
+  if (month >= 1 && month <= 9) {
+    month = "0" + month;
+  }
+  if (strDate >= 0 && strDate <= 9) {
+    strDate = "0" + strDate;
+  }
+  var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate;
+  return currentdate;
+}

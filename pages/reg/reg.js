@@ -1,17 +1,26 @@
 // pages/reg/reg.js
-var utils = require('../../utils/util.js')
+var utils = require('../../utils/util.js');
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    gender: ["男", "女"],
+    genderIndex: 0,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
+  bindGenderChange: function (e) {
+    console.log('picker account 发生选择改变，携带值为', e.detail.value);
+
+    this.setData({
+      genderIndex: e.detail.value
+    })
+  },
   onLoad: function (options) {
 
   },
@@ -67,12 +76,17 @@ Page({
   formSubmit(e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
     // 注册信息
+    var openid = app.globalData.openid;
     var webData = {
       "username": e.detail.value.username,
       "telephone": e.detail.value.telephone,
-      "sex": e.detail.value.sex,
-      "openid":'896563232'
+      "sex": parseInt(e.detail.value.gender)+1,
+      "openid":openid
     }
+    wx.switchTab({
+      url: '../courses/courses',
+    })
+    console.log(webData);
     var that = this;
     utils.getWebDataWithPostOrGet({
       url: "AdminSystem/eyas/wechat/register",

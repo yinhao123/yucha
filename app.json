@@ -1,17 +1,18 @@
 {
 
   "pages":[
-    
-    "pages/reservation/reservation",
-    "pages/index/index",
-    "pages/mine/mine",
+    "pages/login/login",
     "pages/courses/courses",
+    "pages/index/index",
+    "pages/reservation/reservation",
+    "pages/mine/mine",
     "pages/logs/logs",
     "pages/records/records",
     "pages/myinfo/myinfo",
     "pages/msgsuccess/msgsuccess",
     "pages/msgwarn/msgwarn",
     "pages/reg/reg"
+   
 
   ],
   "window":{
@@ -28,7 +29,7 @@
         {
           "selectedIconPath": "img/indexsel.png",
           "iconPath": "img/index.png",
-          "pagePath": "pages/index/index",
+          "pagePath": "pages/courses/courses",
           "text": "首页"
         },
         {

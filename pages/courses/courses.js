@@ -21,7 +21,9 @@ Page({
     duration: 500,
     previousMargin: 0,
     nextMargin: 0,
-    list:null
+    list:null,
+    isMember:false,
+    openId:null
   },
   //事件处理函数
   bindViewTap: function () {
@@ -30,6 +32,45 @@ Page({
     })
   },
   onLoad: function () {
+    //获取openid
+    // app.getOpenid().then(function (res) {
+    //   console.log("res.status");
+    //   console.log(res.status);
+    //   if (res.status == 200) {
+    //     that.setData({
+    //       openId: wx.getStorageSync('openid')
+    //     })
+    //     console.log("openid");
+    //   console.log(this.data.openId);
+    //   } else {
+    //     console.log(res.data);
+    //   }
+    // });
+   
+    var that = this;
+    wx.showLoading({
+      title: '加载中',
+    })
+    setTimeout(function () {
+      console.log(app.globalData);
+      that.setData({
+      //  statusResult: app.globalData.statusResult
+        isMember:app.globalData.user.success
+      })
+      console.log("isMember");
+      console.log(that.data.isMember);
+     
+      wx.hideLoading();
+      if (!that.data.isMember) {
+        wx.redirectTo({
+          url: '../reg/reg',
+        })
+      }
+
+    }, 1000)
+   
+
+
   
     this.setData({
       icon20: base64.icon20,

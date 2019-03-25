@@ -13,7 +13,7 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     // background: ['demo-text-1', 'demo-text-2', 'demo-text-3'],
     imgs: null,
-    indicatorDots: true,
+    indicatorDots: false,
     vertical: false,
     autoplay: true,
     circular: false,
@@ -22,7 +22,8 @@ Page({
     previousMargin: 0,
     nextMargin: 0,
     nodes:null,
-    classInfo:null
+    classInfo:null,
+    classid:null
   },
   //事件处理函数
   bindViewTap: function() {
@@ -30,10 +31,15 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function () {
+
+  onLoad: function (e) {
+    console.log(e.cassid);
+    this.setData({
+        classid:e.cassid
+    })
     // 请求该课程相关的信息
     var webData = {
-      "classid": 1,
+      "classid": e.cassid,
 
     }
     var that = this;
@@ -44,17 +50,18 @@ Page({
       success: function (data) {
         // console.log(url)
         console.log(data.data.classinfo);
-        var bsee = new Base64()
         let str1 = data.data.classinfo.imgcode.decode
+        wx.setStorage({
+          key: 'classinfo',
+          data: data.data.classinfo,
+        })
         that.setData({
           classInfo: data.data.classinfo,
-          node:data.data.classinfo.details,
-          imgs: [data.data.classinfo.imgcode]
+          nodes:data.data.classinfo.details,
+          imgs: [getApp().globalData.BaseUrl+data.data.classinfo.imgcode]
         })
       }
     })
-
-
 
     this.setData({
       icon20: base64.icon20,
@@ -100,9 +107,17 @@ Page({
    */
   appointCourses: function ()
   {
-    wx.switchTab({
-      url: '/pages/reservation/reservation',
-    })
+    try{
+       var classinfo = wx.getStorageSync("classinfo");
+       if(classinfo){
+         var id = classinfo.classid;
+         console.log("id：" + id);
+         wx.switchTab({
+           url: '/pages/reservation/reservation'
+         })
+       }
+    }catch(e){}
+  
   },
   /**
    * 跳转课程列表
