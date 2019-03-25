@@ -36,7 +36,7 @@ Page({
     console.log(this.data.userid)
     var userid = getApp().globalData.user.data.userInfo.userid;
     var webData={
-      "userid": userid
+      "userid": 1
     }
     var that  = this; 
     utils.getWebDataWithPostOrGet({

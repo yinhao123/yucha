@@ -3,19 +3,20 @@
   <view class='container padtop20'>
           <view class="weui-panel weui-panel_access">
               <view class="weui-panel__bd">
- 
-                <view wx:for="{{list}}" wx:key="index">
-                  <navigator url="/pages/index/index?cassid={{item.classid}}" open-type="navigate" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-                      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-                          <image class="weui-media-box__thumb" src="{{item.imgcode}}" />
+           
+                <view  wx:for="{{list}}" wx:key="index">
+                  <navigator class='lists' url="/pages/index/index?cassid={{item.classid}}" open-type="navigate" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                      <view  class="weui-media-box__hd lists weui-media-box__hd_in-appmsg">
+                          <!-- <image class="weui-media-box__thumb" src="{{item.imgcode}}" /> -->
+                           <image class="weui-media-box__thumb" src="/images/avatar.jpg" />
                       </view>
                       <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
                           <view class="weui-media-box__title">{{item.classname}}</view>
+                           <view class="weui-media-box__desc">课时：{{item.hours}}</view>
                           <view class="weui-media-box__desc">{{item.details}}</view>
                       </view>
                   </navigator>
                   </view>
-                  
               </view>
           </view>
   </view>

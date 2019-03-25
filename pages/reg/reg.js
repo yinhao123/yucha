@@ -83,7 +83,7 @@ Page({
       "sex": parseInt(e.detail.value.gender)+1,
       "openid":openid
     }
-    wx.switchTab({
+    wx.redirectTo({
       url: '../courses/courses',
     })
     console.log(webData);

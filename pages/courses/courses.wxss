@@ -60,3 +60,11 @@ swiper{
   display:block;
   margin:0 auto;
 }
+.lists{
+  margin-top: 5rpx;
+}
+navigator{
+  margin-top:5rpx;
+
+   border-bottom: 0.1rpx solid #dddddd; 
+}
