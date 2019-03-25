@@ -1,7 +1,7 @@
 // pages/reservation/reservation.js
 var utils = require('../../utils/util.js');
 import initCalendar from '../../component/calendar/main.js';
-import { getSelectedDay  } from '../../component/calendar/main.js';
+// import { getSelectedDay  } from '../../component/calendar/main.js';
 import { switchView } from '../../component/calendar/main.js';
 const conf = {
   disablePastDay: true, // 是否禁选过去日期
@@ -188,18 +188,25 @@ Page(
   
 })
 
-var w = 1;
-
+var w = 0;
+var tttddd = utils.formatTime(new Date());
+// function getDates(todate = getCurrentMonthFirst()) {//todate默认参数是当前日期，可以传入对应时间
+//   var dateArry = [];
+//   for (var i = 0; i < 7; i++) {
+//     var dateObj = dateLater(todate, i);
+//     dateArry.push(dateObj)
+//   }
+//   return dateArry;
+// }
 function getDates(w) {
-  // debugger;
-  var new_Date = new Date()
+  var new_Date = new Date();
+  console.log(utils.formatTime(new_Date))
   var timesStamp = new_Date.getTime()+w*7*24*60*60*1000;
   var currenDay = new_Date.getDay();
   var dates = [];
   for (var i = 0; i < 7; i++) {
-    dates.push(new Date(timesStamp + 24 * 60 * 60 * 1000 * (i - (currenDay + 6) % 7)).toLocaleDateString().replace(/[年月]/g, '-').replace(/[日上下午]/g, ''));
+    dates.push(utils.formatTime(new Date(timesStamp + 24 * 60 * 60 * 1000 * (i - (currenDay + 6) % 7))));
   }
-  // console.log(dates);
   return dates
 }
 //格式化时间
@@ -207,7 +214,7 @@ function formate(msg){
   if (msg) {
     if (msg == "pre") {
       w = w - 1;
-      if(w<1){
+      if(w<0){
         wx.showToast({
           title: '上周已过去啦',
           icon: 'loading',
@@ -230,58 +237,58 @@ function formate(msg){
       }
     }
   } else {
-    w = 1;
+    w = 0;
   }
-  var formates = {}
   var dayArr = getDates(w);
+  console.log(dayArr);
   for(var i = 0; i<dayArr.length; i++){
     var days = []
     // console.log(i);
       if(i == 0){
         var week = "周一";
-        var day1 = dayArr[i].split("/");
+        var day1 = dayArr[i].split("-");
         var day2 = new Array(day1[1],day1[2]);
         var day3 = day2.join("-");
         days.push(week,day3);
         dayArr[i] = days;
       }else if(i == 1){
         var week = "周二";
-        var day1 = dayArr[i].split("/");
+        var day1 = dayArr[i].split("-");
         var day2 = new Array(day1[1], day1[2]);
         var day3 = day2.join("-");
         days.push(week, day3);
         dayArr[i] = days;
       } else if (i == 2) {
         var week = "周三";
-        var day1 = dayArr[i].split("/");
+        var day1 = dayArr[i].split("-");
         var day2 = new Array(day1[1], day1[2]);
         var day3 = day2.join("-");
         days.push(week, day3);
         dayArr[i] = days;
       } else if (i == 3) {
         var week = "周四";
-        var day1 = dayArr[i].split("/");
+        var day1 = dayArr[i].split("-");
         var day2 = new Array(day1[1], day1[2]);
         var day3 = day2.join("-");
         days.push(week, day3);
         dayArr[i] = days;
       } else if (i == 4) {
         var week = "周五";
-        var day1 = dayArr[i].split("/");
+        var day1 = dayArr[i].split("-");
         var day2 = new Array(day1[1], day1[2]);
         var day3 = day2.join("-");
         days.push(week, day3);
         dayArr[i] = days;
       } else if (i == 5) {
         var week = "周六";
-        var day1 = dayArr[i].split("/");
+        var day1 = dayArr[i].split("-");
         var day2 = new Array(day1[1], day1[2]);
         var day3 = day2.join("-");
         days.push(week, day3);
         dayArr[i] = days;
       } else if (i == 6) {
         var week = "周日";
-        var day1 = dayArr[i].split("/");
+        var day1 = dayArr[i].split("-");
         var day2 = new Array(day1[1], day1[2]);
         var day3 = day2.join("-");
         days.push(week, day3);

@@ -1,7 +1,6 @@
 {
 
   "pages":[
-    "pages/login/login",
     "pages/courses/courses",
     "pages/index/index",
     "pages/reservation/reservation",
@@ -12,8 +11,6 @@
     "pages/msgsuccess/msgsuccess",
     "pages/msgwarn/msgwarn",
     "pages/reg/reg"
-   
-
   ],
   "window":{
     "backgroundTextStyle":"light",
