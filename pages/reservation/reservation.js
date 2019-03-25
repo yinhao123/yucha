@@ -174,7 +174,7 @@ var w = 1;
   
 // }
 function getDates(w) {
-  debugger;
+  // debugger;
   var new_Date = new Date()
   var timesStamp = new_Date.getTime()+w*7*24*60*60*1000;
   var currenDay = new_Date.getDay();
