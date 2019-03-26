@@ -10,23 +10,23 @@
 
       <!-- <view class="weui-cell__ft weui-cell__ft_in-access"role=""aria-label=""></view> -->
   </view>
-  <calendar calendar="{{calendar}}" gesture="{{gesture}}"></calendar>   
+  <!-- <calendar calendar="{{calendar}}" gesture="{{gesture}}"></calendar>    -->
 
-  <!-- <view class='selTime'>
+  <view class='selTime'>
         <button class="weui-btn" type="primary" plain="true" data-week='pre' bindtap='selWeek'>上一周</button>
         <button class="weui-btn" type="primary"  plain="true"data-week = 'next' bindtap='selWeek'>下一周</button>
-  </view>   -->
+  </view>  
 </view>
-<!-- <view class='container'>
+<view class='container'>
     <view class="weui-flex week_font borderbo">
         <block wx:for="{{hday}}" wx:key="index">
-            <view class="weui-flex__item {{ currentData==index ? 'dayAct' :'' }}"  data-index="{{index}}"  bindtap="selDay">
+            <view class="weui-flex__item {{ currentData==index ? 'dayAct' :'' }}"  data-index="{{index}}" data-query="{{item[1]}}"  bindtap="selDay">
                 <view class="">{{item[0]}}</view>
                 <view class="">{{item[1]}}</view>
             </view>
         </block>
         </view>
-</view> -->
+</view>
 <view class='container'>
 <view wx:for="{{list}}" wx:key="index">
     <view class='courseBox'>

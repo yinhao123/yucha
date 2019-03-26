@@ -82,22 +82,128 @@ Page(
     //currentData: getDay(),
     currentData: getDay(),
     list:null,
-    classinfo:null
+    classinfo:null,
+    selCurDate: getNowFormatDate(),
+    count:0
   },
     
   selDay(e) {
     // console.log("点击事件")
-    console.log(e);
+    let cDate = new Date();
+    let cYear = cDate.getFullYear();
+    let cMandD = e.currentTarget.dataset.query;
+    let tabDate = cYear+"-"+cMandD;
+    console.log(tabDate);
+    // console.log(e.currentTarget.dataset.query);
+    var webData = {
+      "selectDate": tabDate,
+      //  "selectDate": "2019-03-19",
+    }
     this.setData({
-      currentData: e.currentTarget.dataset.index
+      currentData: e.currentTarget.dataset.index,
+      selCurDate: tabDate
     })
+    var that = this;
+    utils.getWebDataWithPostOrGet({
+      url: "AdminSystem/eyas/wechat/queryRecordInfoForPage",
+      param: webData,
+      method: "GET",
+      success: function (data) {
+        console.log(data);
+        that.setData({
+          list: data.data.list
+        })
+      }
+    })
+    // console.log(this.data.selCurDate)
   },
   // 上一周下周选择
   selWeek(e){
     console.log(e.currentTarget.dataset.week);
     var msg = e.currentTarget.dataset.week;
-    // getDates();
     
+    // getDates();
+    if(msg == "next" ){
+      if(this.data.count<4){
+        //  console.log("当前日期"+this.data.selCurDate);
+        //  console.log(this.data.count);
+        let dateTemp = this.data.selCurDate.split("-");
+        console.log(dateTemp);
+        let nDate = new Date(dateTemp[1] + '-' + dateTemp[2] + '-' + dateTemp[0]); //转换为MM-DD-YYYY格式  
+        let millSeconds = Math.abs(nDate) + (7 * 24 * 60 * 60 * 1000);
+
+        let rDate = new Date(millSeconds);
+        let year = rDate.getFullYear();
+        let month = rDate.getMonth() + 1;
+        if (month < 10) month = "0" + month;
+        let date = rDate.getDate();
+        if (date < 10) date = "0" + date;
+        //获得点击当天一周后的具体时间
+        let after_date = year + "-" + month + "-" + date;
+        this.setData({
+          selCurDate: after_date
+        })
+        console.log(after_date);
+        var webData = {
+          "selectDate": after_date
+        }    
+        var that = this;
+        utils.getWebDataWithPostOrGet({
+          url: "AdminSystem/eyas/wechat/queryRecordInfoForPage",
+          param: webData,
+          method: "GET",
+          success: function (data) {
+            console.log(data);
+            that.setData({
+              list: data.data.list
+            })
+          }
+        })
+        that.data.count++;
+        console.log(that.data.count);
+      }else{
+          return;
+      }
+    }else if(msg == "pre"){
+      if (this.data.count >0){
+        let dateTemp = this.data.selCurDate.split("-");
+        console.log(dateTemp);
+        let nDate = new Date(dateTemp[1] + '-' + dateTemp[2] + '-' + dateTemp[0]); //转换为MM-DD-YYYY格式  
+        let millSeconds = Math.abs(nDate) - (7 * 24 * 60 * 60 * 1000);
+
+        let rDate = new Date(millSeconds);
+        let year = rDate.getFullYear();
+        let month = rDate.getMonth() + 1;
+        if (month < 10) month = "0" + month;
+        let date = rDate.getDate();
+        if (date < 10) date = "0" + date;
+        //获得点击当天一周后的具体时间
+        let after_date = year + "-" + month + "-" + date;
+        this.setData({
+          selCurDate: after_date
+        })
+        console.log(after_date);
+        var webData = {
+          "selectDate": after_date
+        }
+        var that = this;
+        utils.getWebDataWithPostOrGet({
+          url: "AdminSystem/eyas/wechat/queryRecordInfoForPage",
+          param: webData,
+          method: "GET",
+          success: function (data) {
+            console.log(data);
+            that.setData({
+              list: data.data.list
+            })
+          }
+        })
+        that.data.count--;
+        console.log(that.data.count);
+      }else{
+        return;
+      }
+    }
     this.setData({
       hday: formate(msg),
     })
@@ -137,8 +243,8 @@ Page(
    switchView("week");
     
     var webData = {
-     // "selectDate": getNowFormatDate(),
-       "selectDate": "2019-03-19",
+     "selectDate": getNowFormatDate(),
+      //  "selectDate": "2019-03-19",
     }
   
     var that = this;
@@ -257,17 +363,10 @@ Page(
 
 var w = 0;
 var tttddd = utils.formatTime(new Date());
-// function getDates(todate = getCurrentMonthFirst()) {//todate默认参数是当前日期，可以传入对应时间
-//   var dateArry = [];
-//   for (var i = 0; i < 7; i++) {
-//     var dateObj = dateLater(todate, i);
-//     dateArry.push(dateObj)
-//   }
-//   return dateArry;
-// }
+
 function getDates(w) {
   var new_Date = new Date();
-  console.log(utils.formatTime(new_Date))
+  // console.log(utils.formatTime(new_Date))
   var timesStamp = new_Date.getTime()+w*7*24*60*60*1000;
   var currenDay = new_Date.getDay();
   var dates = [];
@@ -307,7 +406,7 @@ function formate(msg){
     w = 0;
   }
   var dayArr = getDates(w);
-  console.log(dayArr);
+  // console.log(dayArr);
   for(var i = 0; i<dayArr.length; i++){
     var days = []
     // console.log(i);
