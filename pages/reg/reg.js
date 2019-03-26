@@ -74,6 +74,7 @@ Page({
 
   },
   formSubmit(e) {
+// debugger;
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
     // 注册信息
     var openid = app.globalData.openid;
@@ -93,7 +94,10 @@ Page({
       param: webData,
       method: "GET",
       success: function (data) {
-        console.log(data.success);
+        // console.log(data.success);
+        console.log(app.globalData.cMember);
+        app.globalData.cMember = true;
+        console.log(app.globalData.cMember);
         if (data.success){
           wx.showToast({
             title: '注册成功',

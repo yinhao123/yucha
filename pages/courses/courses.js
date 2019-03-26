@@ -39,22 +39,34 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
-    setTimeout(function () {
-      console.log(app.globalData);
-      that.setData({
-        isMember:app.globalData.user.success
+    console.log(app.globalData);
+    console.log(app.globalData.user);
+    // app.globalData.cMember = app.globalData.user.success;
+    wx.hideLoading();
+    console.log(app.globalData.cMember);
+    if (!app.globalData.user) {
+      wx.redirectTo({
+        url: '../reg/reg',
       })
-      console.log("isMember");
-      console.log(that.data.isMember);
-     
-      wx.hideLoading();
-      if (!that.data.isMember) {
-        wx.redirectTo({
-          url: '../reg/reg',
-        })
-      }
+    }
+    // setTimeout(function () {
+    // //   console.log(app.globalData);
+    // //   // that.setData({
+    // //   //   isMember:app.globalData.user.success
+    // //   // })
+    // //   // console.log("isMember");
+    // //   // console.log(that.data.isMember);
+    // // //  debugger;
+    // //   app.globalData.cMember = app.globalData.user.success;
+    // //   wx.hideLoading();
+    // //   console.log(app.globalData.cMember);
+    // //   if (!app.globalData.cMember) {
+    // //     wx.redirectTo({
+    // //       url: '../reg/reg',
+    // //     })
+    // //   }
 
-    }, 1000)
+    // }, 1000)
    
 
 

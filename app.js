@@ -82,7 +82,11 @@ App({
                 openid: res.data.data.openid
               }
 
+              new Promise(() =>{
+
+              })
               utils.getWebDataWithPostOrGet({
+
                 url: "AdminSystem/eyas/wechat/getUserInfoByOpenid",
                 param: userData,
                 method: "GET",
@@ -128,6 +132,7 @@ App({
     userInfo: null,
     BaseUrl:"https://sanzhitu.iaimai.com:8080", // 现在这个没啥用，定义访问域名在utils中  :）
     openid:null,
-    user:null
+    user:null,
+    cMember:false
   }
 })
