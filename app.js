@@ -49,9 +49,15 @@ App({
         }
       })
     })},
+/******** */
+// login:function(){
+//   var that = this;
+//   return new Promise(function(resolve,reject){
 
+//   })
+// },
 
-
+/******** */
   onLaunch: function () {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
@@ -59,51 +65,55 @@ App({
     wx.setStorageSync('logs', logs)
     var that = this;
 
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        if (res.code) {
-          // 发起网络请求
-          wx.request({
-            url: "https://sanzhitu.iaimai.com:8080/AdminSystem/eyas/wechat/getOpenid",
-            data: {
-              code: res.code
-            },
-            success(res) {
-              console.log(res.data.data.openid)
-              getApp().globalData.openid = res.data.data.openid
-              //将这个openid保存在本地缓存中
-              wx.setStorage({
-                key: 'openid',
-                data: res.data.data.openid
-              })
+    // wx.login({
+    //   success: res => {
+    //     // 发送 res.code 到后台换取 openId, sessionKey, unionId
+    //     if (res.code) {
+    //       // 发起网络请求
+    //       wx.request({
+    //         url: "https://sanzhitu.iaimai.com:8080/AdminSystem/eyas/wechat/getOpenid",
+    //         data: {
+    //           code: res.code
+    //         },
+    //         success(res) {
+    //           // console.log(res.data.data.openid)
+    //           getApp().globalData.openid = res.data.data.openid
+    //           //将这个openid保存在本地缓存中
+    //           wx.setStorage({
+    //             key: 'openid',
+    //             data: res.data.data.openid
+    //           })
 
-              var userData = {
-                openid: res.data.data.openid
-              }
+    //           var userData = {
+    //             openid: res.data.data.openid
+    //           }
+    //           utils.getWebDataWithPostOrGet({
+    //             url: "AdminSystem/eyas/wechat/getUserInfoByOpenid",
+    //             param: userData,
+    //             method: "GET",
+    //             success: function (data) {
+    //               return new Promise(function(resolve,reject){
+    //                     if(data){
+    //                         //  resolve(console.log(data))
+    //                       getApp().globalData.user = data;
+    //                       resolve(data)
+    //                     }else{
+    //                       reject("失败.....")
+    //                     }
+    //               }).then(res=>{
+    //                 getApp().globalData.cMember = res.success 
+    //                   console.log(res)
+    //               })
 
-              new Promise(() =>{
-
-              })
-              utils.getWebDataWithPostOrGet({
-
-                url: "AdminSystem/eyas/wechat/getUserInfoByOpenid",
-                param: userData,
-                method: "GET",
-                success: function (data) {
-                  console.log(data);
-
-                  getApp().globalData.user = data;
-
-                }
-              })
-            }
-          })
-        } else {
-          console.log('登录失败！' + res.errMsg);
-        }
-      }
-    })
+    //             }
+    //           })
+    //         }
+    //       })
+    //     } else {
+    //       console.log('登录失败！' + res.errMsg);
+    //     }
+    //   }
+    // })
    
     // 获取用户信息
     wx.getSetting({

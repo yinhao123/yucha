@@ -9,64 +9,6 @@ import { jump } from '../../component/calendar/main.js';
 import { enableArea, enableDays } from '../../component/calendar/main.js';
 import { getSelectedDay } from '../../component/calendar/main.js';
 
-const conf = {
-  disablePastDay: true, // 是否禁选过去日期
-  /**
-  * 选择日期后执行的事件
-  * @param { object } currentSelect 当前点击的日期
-  * @param { array } allSelectedDays 选择的所有日期（当mulit为true时，才有allSelectedDays参数）
-  */
-  // afterTapDay: (currentSelect, allSelectedDays) => {
-  //   console.log("切换了日期");
-  //   console.log(currentSelect);
-  //   console.log(allSelectedDays);
-  //  },
-  /**
-   * 当改变月份时触发
-   * @param { object } current 当前年月
-   * @param { object } next 切换后的年月
-   */
-  // whenChangeMonth: (current, next) => {
-  //   console.log("改变了月份");
-  //   switchView("week");
-  //  },
-  /**
-   * 日期点击事件（此事件会完全接管点击事件）
-   * @param { object } currentSelect 当前点击的日期
-   * @param { object } event 日期点击事件对象
-   */
-  onTapDay(currentSelect, event) {
-    console.log("点击了日期");
-    console.log(currentSelect.year + "-" + currentSelect.month + "-" + currentSelect.day);
-    let thisdata = currentSelect.year + "-" + currentSelect.month + "-" + currentSelect.day;
-    console.log(currentSelect);
-    console.log(event);
-    var webData = {
-      // "selectDate": getNowFormatDate(),
-      "selectDate": thisdata,
-    }
-
-    var that = this;
-    utils.getWebDataWithPostOrGet({
-      url: "AdminSystem/eyas/wechat/queryRecordInfoForPage",
-      param: webData,
-      method: "GET",
-      success: function (data) {
-        console.log(data);
-      // 缓存到本地
-      wx.setStorage({
-        key: 'daychoose',
-        data: data.data,
-      })
-      }
-    })
-  },
-  /**
-   * 日历初次渲染完成后触发事件，如设置事件标记
-   * @param { object } ctx 当前页面实例
-   */
-  // afterCalendarRender(ctx) { },
-};
 
 Page(
   {
@@ -469,7 +411,6 @@ function getDay(){
   // debugger;
   var week;
   var weeks = new Date().getDay();  
-  console.log(week);
   switch(weeks){
       case 0:
       week = 6;

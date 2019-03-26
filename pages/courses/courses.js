@@ -33,22 +33,71 @@ Page({
     })
   },
   onLoad: function () {
- 
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        if (res.code) {
+          // 发起网络请求
+          wx.request({
+            url: "https://sanzhitu.iaimai.com:8080/AdminSystem/eyas/wechat/getOpenid",
+            data: {
+              code: res.code
+            },
+            success(res) {
+              // console.log(res.data.data.openid)
+              getApp().globalData.openid = res.data.data.openid
+              //将这个openid保存在本地缓存中
+              wx.setStorage({
+                key: 'openid',
+                data: res.data.data.openid
+              })
+
+              var userData = {
+                openid: res.data.data.openid
+              }
+              utils.getWebDataWithPostOrGet({
+                url: "AdminSystem/eyas/wechat/getUserInfoByOpenid",
+                param: userData,
+                method: "GET",
+                success: function (data) {
+                  return new Promise(function (resolve, reject) {
+                    if (data) {
+                      //  resolve(console.log(data))
+                      getApp().globalData.user = data;
+                      resolve(data)
+                    } else {
+                      reject("失败.....")
+                    }
+                  }).then(res => {
+                    getApp().globalData.cMember = res.success
+                    console.log(res)
+                    console.log(app.globalData.cMember);
+                    if (!app.globalData.cMember) {
+                      wx.redirectTo({
+                        url: '../reg/reg',
+                      })
+                    }
+                  })
+
+                }
+              })
+            }
+          })
+        } else {
+          console.log('登录失败！' + res.errMsg);
+        }
+      }
+    })
    
     var that = this;
     wx.showLoading({
       title: '加载中',
     })
-    console.log(app.globalData);
-    console.log(app.globalData.user);
+    // console.log(app.globalData);
+    // console.log(app.globalData.user);
     // app.globalData.cMember = app.globalData.user.success;
     wx.hideLoading();
-    console.log(app.globalData.cMember);
-    if (!app.globalData.user) {
-      wx.redirectTo({
-        url: '../reg/reg',
-      })
-    }
+
     // setTimeout(function () {
     // //   console.log(app.globalData);
     // //   // that.setData({
@@ -111,7 +160,7 @@ Page({
       param: webData,
       method: "GET",
       success: function (data) {
-        console.log(data.data.list);
+       
         that.setData({
           list: data.data.list,
        
