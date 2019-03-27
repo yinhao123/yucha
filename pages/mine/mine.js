@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-      userInfo:{}
+      userInfo:{},
+      restclass:"正在获取..."
   },
 
   /**
@@ -35,7 +36,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    let user = wx.getStorageSync("user");
 
+    this.setData({
+      restclass:user.data.userInfo.restclass 
+    })
   },
 
   /**
@@ -53,6 +58,11 @@ Page({
   },
 
   /**
+   * 
+   * 
+   * 
+   * 
+   * 
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {

@@ -59,6 +59,8 @@ App({
 
 /******** */
   onLaunch: function () {
+    // 判断该用户有没有课时，没有的话则跳到提示充值页面去了
+    
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())

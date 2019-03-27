@@ -64,7 +64,16 @@ Page({
                     if (data) {
                       //  resolve(console.log(data))
                       getApp().globalData.user = data;
-                      resolve(data)
+                      resolve(data);
+                      wx.setStorage({
+                        key: 'user',
+                        data: data,
+                      })
+                      if (data.data.userInfo.restclass < 1){
+                            wx.redirectTo({
+                              url: '/pages/msgchongzhi/msgchongzhi',
+                            })
+                      }
                     } else {
                       reject("失败.....")
                     }
@@ -93,30 +102,9 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
-    // console.log(app.globalData);
-    // console.log(app.globalData.user);
-    // app.globalData.cMember = app.globalData.user.success;
+   
     wx.hideLoading();
 
-    // setTimeout(function () {
-    // //   console.log(app.globalData);
-    // //   // that.setData({
-    // //   //   isMember:app.globalData.user.success
-    // //   // })
-    // //   // console.log("isMember");
-    // //   // console.log(that.data.isMember);
-    // // //  debugger;
-    // //   app.globalData.cMember = app.globalData.user.success;
-    // //   wx.hideLoading();
-    // //   console.log(app.globalData.cMember);
-    // //   if (!app.globalData.cMember) {
-    // //     wx.redirectTo({
-    // //       url: '../reg/reg',
-    // //     })
-    // //   }
-
-    // }, 1000)
-   
 
 
   
@@ -160,7 +148,12 @@ Page({
       param: webData,
       method: "GET",
       success: function (data) {
-       
+        console.log("课程列表");
+        console.log(data.data.list);
+       wx.setStorage({
+         key: 'courseslist',
+         data: data.data.list,
+       })
         that.setData({
           list: data.data.list,
        

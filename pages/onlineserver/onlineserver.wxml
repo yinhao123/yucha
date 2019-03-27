@@ -1,0 +1,2 @@
+<!--pages/onlineserver/onlineserver.wxml-->
+<button class='serverbutton' type='primary'  open-type="contact" > 点击进入在线客服 </button>

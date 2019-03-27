@@ -68,3 +68,7 @@ navigator{
 
    border-bottom: 0.1rpx solid #dddddd; 
 }
+.loginbutton{
+    width: 80%;
+    top: 80%;
+}

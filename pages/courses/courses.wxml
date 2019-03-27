@@ -1,4 +1,11 @@
-<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 授权登录 </button>
+
+
+
+
+<button class='loginbutton' type='primary' wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 授权登录 </button>
+
+
+
 <block wx:else>
   <view class='container padtop20'>
           <view class="weui-panel weui-panel_access">

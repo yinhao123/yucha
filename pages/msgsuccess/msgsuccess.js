@@ -68,8 +68,8 @@ Page({
    */
   lookRecords :function (){
     // 跳转到个人中心约课信息
-    wx.redirectTo({
-      url: '/pages/records/records'
+    wx.switchTab({
+      url: '/pages/mine/mine'
     })
   },
   /**
@@ -77,7 +77,6 @@ Page({
    */
   chooseCourses: function () {
     // 跳转到课程列表
-
     wx.switchTab({
       url: '/pages/courses/courses'
     })

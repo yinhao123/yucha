@@ -30,3 +30,9 @@
 .weui-footer {
   margin-top: 120%;
 }
+.testclass {
+  padding-left: 200rpx;
+  color: #aaaaaa;
+  font-size: 15px;
+
+}

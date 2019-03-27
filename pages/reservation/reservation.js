@@ -1,13 +1,6 @@
 // pages/reservation/reservation.js
 var utils = require('../../utils/util.js');
-import initCalendar from '../../component/calendar/main.js';
 
-// import { getSelectedDay  } from '../../component/calendar/main.js';
-
-import { switchView } from '../../component/calendar/main.js';
-import { jump } from '../../component/calendar/main.js';
-import { enableArea, enableDays } from '../../component/calendar/main.js';
-import { getSelectedDay } from '../../component/calendar/main.js';
 
 
 Page(
@@ -17,9 +10,10 @@ Page(
    * 页面的初始数据
    */
   data: {
-   
-    userid : 1,
-    recordid:1,
+    array: [],
+    index:0,
+    userid:null,
+    recordid:null,
     hday :formate(),
     //currentData: getDay(),
     currentData: getDay(),
@@ -28,7 +22,31 @@ Page(
     selCurDate: getNowFormatDate(),
     count:0
   },
-    
+  /**
+   * 点击重选课程
+   */
+    changeCourses(){
+      wx.showModal({
+        title: '友情提示',
+        content: '你是否想要选择其他课程？',
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定');
+            wx.switchTab({
+              url: '/pages/courses/courses',
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消');
+          }
+        }
+      })
+    },
+    bindPickerChange(e) {
+      console.log('picker发送选择改变，携带值为', e.detail.value)
+      this.setData({
+        index: e.detail.value
+      })
+    },
   selDay(e) {
     // console.log("点击事件")
     let cDate = new Date();
@@ -39,7 +57,7 @@ Page(
     // console.log(e.currentTarget.dataset.query);
     var webData = {
       "selectDate": tabDate,
-      //  "selectDate": "2019-03-19",
+      "classid":this.data.classinfo.classid
     }
     this.setData({
       currentData: e.currentTarget.dataset.index,
@@ -87,7 +105,8 @@ Page(
         })
         console.log(after_date);
         var webData = {
-          "selectDate": after_date
+          "selectDate": after_date,
+          "classid": this.data.classinfo.classid
         }    
         var that = this;
         utils.getWebDataWithPostOrGet({
@@ -96,6 +115,7 @@ Page(
           method: "GET",
           success: function (data) {
             console.log(data);
+            console.log("排课列表");
             that.setData({
               list: data.data.list
             })
@@ -126,7 +146,8 @@ Page(
         })
         console.log(after_date);
         var webData = {
-          "selectDate": after_date
+          "selectDate": after_date,
+          "classid":this.data.classinfo.classid
         }
         var that = this;
         utils.getWebDataWithPostOrGet({
@@ -134,6 +155,7 @@ Page(
           param: webData,
           method: "GET",
           success: function (data) {
+            console.log("排课列表");
             console.log(data);
             that.setData({
               list: data.data.list
@@ -155,7 +177,19 @@ Page(
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
- 
+    // 这一页要获取到所有的课程,从本地获取之后要赋值给数组
+    let courseslist = wx.getStorageSync("courseslist");
+      this.setData({
+        array:courseslist
+      })
+    let classinfo = wx.getStorageSync("classinfo");
+    // this.setData({
+    //   index:classinfo.classid
+    // })
+    this.setData({
+      classinfo:classinfo
+    })
+
     try{
       let classinfo = wx.getStorageSync("classinfo");
       this.setData({
@@ -163,15 +197,15 @@ Page(
       })
       if(!classinfo){
         wx.showModal({
-          title: '系统提示',
+          title: '提示',
           content: '请先选择一个课程',
+          showCancel:false,
           success(res) {
             if (res.confirm) {
               console.log('用户点击确定');
               wx.switchTab({
                 url: '/pages/courses/courses',
               })
-
             } else if (res.cancel) {
               console.log('用户点击取消');
             }
@@ -179,14 +213,12 @@ Page(
         })
       }
     }catch(e){
-      // todo
+      
     }
-    initCalendar(conf);
-   switchView("week");
-    
+
     var webData = {
      "selectDate": getNowFormatDate(),
-      //  "selectDate": "2019-03-19",
+  
     }
   
     var that = this;
@@ -214,20 +246,13 @@ Page(
    * 生命周期函数--监听页面显示
    */
   onShow: function (e) {
-    console.log(getSelectedDay());
-    switchView("week");
-    console.log("onshow...");
- 
+    let classinfo = wx.getStorageSync("classinfo");
+    this.setData({
+      classinfo: classinfo
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
+    /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
@@ -257,24 +282,30 @@ Page(
   /**
    * 选课提示
    */
-  appointment: function ()
+  appointment: function (e)
   {
-    // wx.navigateTo({
-    //   url: '/pages/msgsuccess/msgsuccess'
-    // })
-    var that = this;
+    console.log(e.target.dataset.index);
+    let recordid = e.target.dataset.index;
+    let user = wx.getStorageSync("user");
+    let userid = user.data.userInfo.userid;
+    let course = wx.getStorageSync("classinfo");
+    let classid = course.classid;
+    console.log("userid : "+userid);
+    console.log("classid : "+classid);
+    let that = this;
     wx.showModal({
       title: '约课提示',
-      content: '约课成功后,上课前24小时内不能取消。点击确定，马上预约。',
+      content: '约课成功后,不能取消。点击确定，马上预约。',
       success(res) {
         if (res.confirm) {
           console.log('用户点击确定');
           // 请求约课信息
           var webData = {
-            "userid": 8,
-            "recordid":1
+            "userid":userid,
+            "recordid": recordid
           }
           var that = this;
+        
           utils.getWebDataWithPostOrGet({
             url: "AdminSystem/eyas/wechat/saveAppointmentInfo",
             param: webData,
@@ -288,7 +319,7 @@ Page(
                 })
               }else{
                 wx.redirectTo({
-                  url: '/pages/msgwarn/msgwarn'
+                  url: '/pages/msgwarn/msgwarn?errormsg='+data.errormsg
                 })
               
               }

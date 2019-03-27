@@ -20,7 +20,7 @@ function getWebDataWithPostOrGet(model) {
     url: webUrl + model.url,
     data: model.param,
     header: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/x-www-form-urlencoded", //header: "application/x-www-form-urlencoded",
       "openid":getApp().globalData.openid
     },
     method: model.method,

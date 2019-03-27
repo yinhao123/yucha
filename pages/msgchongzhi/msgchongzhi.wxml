@@ -1,18 +1,22 @@
-<!--pages/msgwarn/msgwarn.wxml-->
 <view class="page">
     <view class="weui-msg">
        
-        <icon type="warn" size="60" />
+        <icon type="info" size="100" />
         <view class="weui-msg__text-area">
-            <text class="weui-msg__title">预约失败</text>
-            <view class="weui-msg__desc">{{errormsg}}</view>
+            <text class="weui-msg__title">请去充值</text>
+            <view class="weui-msg__desc">你的课时数不足，请到前台充值课时，充值完成后点击我已充值即可。</view>
         </view>
+      
+
         <view class="weui-msg__opr-area">
             <view class="weui-btn-area">
-                <button href="javascript:history.back();" bindtap='chooseCourses' type = "primary" class="weui-btn weui-btn_primary">返回课程</button>
-                <button href="javascript:history.back();" open-type="contact" class="weui-btn weui-btn_default">联系客服</button>
+                <button  bindtap='myPay' type = "primary" class="weui-btn weui-btn_primary">我已充值</button>
+                <button  bindtap='linkServer' open-type="contact" class="weui-btn weui-btn_default">联系客服</button>
             </view>
         </view>
+
+
+
         <view class="weui-msg__extra-area">
             <view class="weui-footer">
                 <view class="weui-footer__links">
@@ -23,3 +27,4 @@
         </view>
     </view>
 </view>
+

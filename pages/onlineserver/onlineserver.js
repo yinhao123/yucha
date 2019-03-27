@@ -1,22 +1,17 @@
-// pages/msgwarn/msgwarn.js
+// pages/onlineserver/onlineserver.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    errormsg:"Sorry,这课程太火爆了，请稍后再试！"
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      console.log("预约失败页面");
-      console.log(options);
-      this.setData({
-        errormsg:options.errormsg
-      })
 
   },
 
@@ -67,24 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  /**
-   * 继续选课
-   */
-  chooseCourses: function () {
-    // 跳转到课程列表
-
-    wx.switchTab({
-      url: '/pages/courses/courses'
-    })
-  },
-  /**
-   * back Index
-   */
-  backIndex : function ()
-  {
-    wx.switchTab({
-      url: '/pages/courses/courses'
-    })   
   }
 })

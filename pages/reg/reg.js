@@ -105,7 +105,7 @@ Page({
             duration: 2000
           }),
             wx.reLaunch({
-              url: '/pages/courses/courses'
+              url: '/pages/msgchongzhi/msgchongzhi'
             })
         }
       }

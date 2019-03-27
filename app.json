@@ -12,7 +12,9 @@
     "pages/msgsuccess/msgsuccess",
     "pages/msgwarn/msgwarn",
     "pages/reg/reg",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/msgchongzhi/msgchongzhi",
+    "pages/onlineserver/onlineserver"
    
   ],
   "window":{

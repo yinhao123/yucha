@@ -58,7 +58,7 @@ Page({
         that.setData({
           classInfo: data.data.classinfo,
           nodes:data.data.classinfo.details,
-          imgs: [getApp().globalData.BaseUrl+data.data.classinfo.imgcode]
+          imgs: [getApp().globalData.BaseUrl +'/AdminSystem'+data.data.classinfo.imgcode]
         })
       }
     })
