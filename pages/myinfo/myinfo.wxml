@@ -1,43 +1,28 @@
 <!--pages/myinfo/myinfo.wxml-->
  <view class="weui-cells__title">会员信息</view>
-        <view class="weui-cells weui-cells_form">
-         <view class="weui-cell">
-                <view class="weui-cell__hd"><text class="weui-label">姓名</text></view>
-                <view class="weui-cell__bd">
-                   <view class="weui-cell__hd"><text class="weui-label">{{userInfo.username}}</text></view>
+     
+             <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__item">
+                    <text class="weui-form-preview__label">您的姓名</text>
+                    <text class="weui-form-preview__value" style="color:green;">{{userInfo.username}}</text>
                 </view>
-                
-            </view>
-          
-            <view class="weui-cell weui-cell_vcode">
-                <view class="weui-cell__hd">
-                    <text class="weui-label">手机</text>
+                <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">您的手机</label>
+                    <span class="weui-form-preview__value" style="color:green;">{{userInfo.telephone}}</span>
                 </view>
-                <view class="weui-cell__bd">
-                    <view class="weui-cell__hd"><text class="weui-label">{{userInfo.telephone}}</text></view>
-                </view>
-               
-            </view>
-             <view class="weui-cell weui-cell_vcode">
-                <view class="weui-cell__hd">
-                    <text class="weui-label">性别</text>
-                </view>
-                <view class="weui-cell__bd">
-                <view wx:if="{{userInfo.sex > 1}}">女
+                 <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">您的性别</label>
+                    <span class="weui-form-preview__value" style="color:green;"> <view wx:if="{{userInfo.sex > 1}}">女
                  
                   </view>
-                   <view wx:else>男</view>
+                   <view wx:else>男</view></span>
+                </view>
+                  <view class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">剩余课时</label>
+                    <span class="weui-form-preview__value" style="color:green;">{{userInfo.restclass}}课时</span>
                 </view>
                
-            </view>
-            <view class="weui-cell weui-cell_vcode">
-                <view class="weui-cell__hd">
-                    <text class="weui-label">剩余课时</text>
-                </view>
-                <view class="weui-cell__bd">
-                    <view class="weui-cell__hd"><text class="weui-label">{{userInfo.restclass}}</text></view>
-                </view>
-            </view>
+              
         </view>
 
 

@@ -14,7 +14,8 @@
     "pages/reg/reg",
     "pages/login/login",
     "pages/msgchongzhi/msgchongzhi",
-    "pages/onlineserver/onlineserver"
+    "pages/onlineserver/onlineserver",
+    "pages/details/details"
    
   ],
   "window":{

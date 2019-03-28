@@ -23,6 +23,20 @@ Page(
     count:0
   },
   /**
+   * 进入课程详情页
+   */
+    seeDetails(e){
+      let classinfo = e.currentTarget.dataset.index;
+      wx.setStorageSync("record", classinfo);
+
+      let user = wx.getStorageSync("user");
+      let userid = user.data.userInfo.userid;
+     console.log(userid);
+      wx.navigateTo({
+        url: '/pages/details/details?userid=' + userid
+      })
+    },
+  /**
    * 点击重选课程
    */
     changeCourses(){

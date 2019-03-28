@@ -1,0 +1,88 @@
+<!--pages/details/details.wxml-->
+
+<view class="page__bd">
+
+                <view class="weui-media-box weui-media-box_text">
+                    <text style='font-size:25px;' class="weui-media-box__title">{{record.coachname}}</text>
+                      <!-- <view class="weui-badge" style="margin-left: 5px;">可约</view> -->
+                    <view class="weui-media-box__desc">上课前3个小时不能约课，若已经约课，上课前2小时不能取消预约。</view>
+                </view>
+</view>
+<view  class="weui-cells">
+ 
+            <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__bd">
+                    <text style="vertical-align: middle">课程</text>
+                </view>
+                <view class="weui-cell__ft">{{record.classname}}</view>
+            </view>
+
+             <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__bd">
+                    <text style="vertical-align: middle">授课教练</text>
+                
+                </view>
+                <view class="weui-cell__ft">{{record.coachname}}</view>
+            </view>
+             <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__bd">
+                    <text style="vertical-align: middle">授课时间</text>
+                
+                </view>
+                <view class="weui-cell__ft">{{record.starttime}}</view>
+            </view>
+               <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__bd">
+                    <text style="vertical-align: middle">上课时间</text>
+                
+                </view>
+                <view class="weui-cell__ft">{{record.begintime}}</view>
+            </view>
+            <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__bd">
+                    <text style="vertical-align: middle">下课时间</text>
+                
+                </view>
+                <view class="weui-cell__ft">{{record.endtime}}</view>
+            </view>
+            <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__bd">
+                    <text style="vertical-align: middle">上课地点</text>
+                
+                </view>
+                <view class="weui-cell__ft">{{record.address}}</view>
+            </view>
+             <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__bd">
+                    <text style="vertical-align: middle">最大上课人数</text>
+                
+                </view>
+                <view class="weui-cell__ft">{{record.maxnum}}</view>
+            </view>
+               <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__bd">
+                    <text style="vertical-align: middle">当前报名人数</text>
+                
+                </view>
+                <view class="weui-cell__ft">{{record.currnum}}</view>
+            </view>
+             <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__bd">
+                    <text style="vertical-align: middle">学时</text>
+                
+                </view>
+                <view class="weui-cell__ft">{{record.recordhour}}</view>
+            </view>
+
+</view>
+
+<view wx:if="{{record.currnum < record.maxnum }}"><button class='appointButton' bindtap='appointClass' style='width:80%;' type='primary'>
+  点击预约课程
+</button>
+                 
+                  </view>
+                   <view wx:else><button class='appointButton' bindtap='appointClass' disabled='true' style='width:80%;' >
+  预约人数已满
+</button></view>
+
+

@@ -30,7 +30,8 @@
 </view>
 <view class='container'>
 <view wx:for="{{list}}" wx:key="index">
-    <view class='courseBox'>
+
+    <view class='courseBox' bindtap='seeDetails' data-index='{{item}}'>
       <view class='headIco'>
           <image src='/images/avatar.jpg'></image>
       </view>
@@ -43,7 +44,7 @@
       </view> 
       <view class='makR'>
         <view wx:if="{{item.maxnum-item.currnum > 0}}">
-              <button class="weui-btn mini-btn" bindtap='appointment' data-index="{{item.recordid}}" type="primary" size="mini">预约</button>
+              <button class="weui-btn mini-btn" catchtap='appointment' data-index="{{item.recordid}}" type="primary" size="mini">预约</button>
         </view>
           
           <view wx:else>

@@ -1,0 +1,5 @@
+/* pages/details/details.wxss */
+.appointButton{
+  margin-top: 60rpx;
+  margin-bottom: 120rpx;
+}
