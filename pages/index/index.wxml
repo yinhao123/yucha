@@ -2,16 +2,17 @@
 <block wx:else>
   <view class="container">
     <view class="page-section page-section-spacing swiper">
-      <swiper
+    <image src="{{imgs}}" mode="aspectFill" style='width:100%;height:300rpx;'></image>
+      <!-- <swiper
         indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}"
         interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px">
         <block wx:for="{{imgs}}" wx:key="*this">
           <swiper-item>
-            <!-- <view class="swiper-item {{item}}"></view> -->
+           
             <image class='swiper-item' src="{{item}}"></image>
           </swiper-item>
         </block>
-      </swiper>
+      </swiper> -->
     </view>
   </view>
   <view class='container padtop20'>

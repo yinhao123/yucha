@@ -1,61 +1,78 @@
 <!--pages/reservation/reservation.wxml-->
 <view class='container'>
   <view class='weui-flex borderR'>
-      <view>
-        <view class="placeholder ">当前课程</view>
-      </view>
-      <view class="weui-flex__item">
-        <view class="weui-cell__bd placeholder  borderL" bindtap='changeCourses' role=""aria-label="">
+    <view>
+      <view class="placeholder ">课程名称</view>
+    </view>
+    <view class="weui-flex__item">
+      <view class="weui-cell__bd placeholder  borderL" bindtap='changeCourses' role="" aria-label="">
         {{classinfo.classname}}
-        </view>
       </view>
+    </view>
   </view>
-
-  
-
   <view class='selTime'>
-        <button class="weui-btn" type="primary" plain="true" data-week='pre' bindtap='selWeek'>上一周</button>
-        <button class="weui-btn" type="primary"  plain="true"data-week = 'next' bindtap='selWeek'>下一周</button>
-  </view>  
+    <button class="weui-btn" type="primary" plain="true" data-week='pre' bindtap='selWeek'>上一周</button>
+    <button class="weui-btn" type="primary" plain="true" data-week='next' bindtap='selWeek'>下一周</button>
+  </view>
 </view>
 <view class='container'>
-    <view class="weui-flex week_font borderbo">
-        <block wx:for="{{hday}}" wx:key="index">
-            <view class="weui-flex__item {{ currentData==index ? 'dayAct' :'' }}"  data-index="{{index}}" data-query="{{item[1]}}"  bindtap="selDay">
-                <view class="">{{item[0]}}</view>
-                <view class="">{{item[1]}}</view>
-            </view>
-        </block>
-        </view>
+  <view class="weui-flex week_font borderbo">
+    <block wx:for="{{hday}}" wx:key="index">
+      <view class="weui-flex__item {{ currentData==index ? 'dayAct' :'' }}" data-index="{{index}}" data-query="{{item[1]}}" bindtap="selDay">
+        <view class="">{{item[0]}}</view>
+        <view class="">{{item[1]}}</view>
+      </view>
+    </block>
+  </view>
 </view>
 <view class='container'>
-<view wx:for="{{list}}" wx:key="index">
+  <view wx:for="{{list}}" wx:key="index">
 
     <view class='courseBox' bindtap='seeDetails' data-index='{{item}}'>
       <view class='headIco'>
-          <image src='/images/avatar.jpg'></image>
+        <!-- <image src='/images/avatar.jpg'></image> -->
       </view>
+      <!-- <view class='head'>
+      </view> -->
       <view class='c-info'>
-          <text class='title'>{{item.begintime}}-{{item.endtime}}</text>
+        <text class='title'>{{item.classname}}</text>
+        <view>
+          <icon type="waiting" color="#1aad19" size="12" />
+          <text class="coursestime" style='color:#1aad19'> {{item.begintime}}-{{item.endtime}}</text>
+        </view>
+        <view>
+          <image src='/images/shalou.png' style="width: 12px; height: 12px"></image>
           <text>课时:{{item.recordhour}}</text>
-          <text>教练:{{item.coachname}}</text>
-          <text>额定名额:{{item.maxnum}}</text>
-          <text>预约人数:{{item.currnum}}</text>
-      </view> 
+        </view>
+        <view>
+          <image src='/images/jiaolian.png' style="width: 12px; height: 12px"></image>
+          <text> {{item.coachname}}</text>
+        </view>
+
+
+
+      </view>
       <view class='makR'>
         <view wx:if="{{item.maxnum-item.currnum > 0}}">
-              <button class="weui-btn mini-btn" catchtap='appointment' data-index="{{item.recordid}}" type="primary" size="mini">预约</button>
+          <button class="weui-btn mini-btn" catchtap='appointment' data-index="{{item.recordid}}" type="primary" size="mini">预约</button>
         </view>
-          
-          <view wx:else>
-           <button class="weui-btn mini-btn" bindtap='appointment' type="default" disabled='true' size="mini">预约</button>
-          
-          </view>
 
+        <view wx:else>
+          <button class="weui-btn mini-btn" bindtap='appointment' type="default" disabled='true' size="mini">预约</button>
 
-         
+        </view>
       </view>
     </view>
+    <view class='baomingnumbers'>
+    <view wx:if = "{{item.maxnum-item.currnum > 0 }}">
+      <text>可预约{{item.maxnum-item.currnum }}人</text>
+     
     </view>
-    
+    <view wx:else>
+           <text>已报满</text>
+    </view>
+     
+    </view>
+  </view>
+
 </view>

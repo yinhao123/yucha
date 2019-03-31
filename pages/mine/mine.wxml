@@ -26,10 +26,10 @@
   </navigator>
   
   
-  <navigator class="weui-cell navbg" url="/pages/onlineserver/onlineserver"role="navigation"aria-label="">
-    <view class="weui-cell__bd"role=""aria-label="">在线客服</view>
+  <view class="weui-cell navbg" bindtap='makecall'>
+    <view class="weui-cell__bd"role=""aria-label="">客服电话</view>
     <view class="weui-cell__ft weui-cell__ft_in-access"role=""aria-label=""></view>
-  </navigator>
+  </view>
 
 </view>
 <!-- <view class='container logout'>

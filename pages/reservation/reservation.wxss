@@ -46,7 +46,7 @@
 .courseBox .c-info{
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 70%;
   padding: 10rpx;
 }
 .c-info .title{
@@ -68,4 +68,17 @@
 }
 .placeholder {
   color: #333333
+}
+.coursestime {
+  color: #1aad19;
+}
+.baomingnumbers {
+  border-top: 1rpx #dddddd solid;
+  font-size: 26rpx;
+  color: #aaaaaa;
+  padding-left: 30rpx;
+  background-color: #fff;
+}
+.address {
+
 }

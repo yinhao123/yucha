@@ -11,7 +11,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    // background: ['demo-text-1', 'demo-text-2', 'demo-text-3'],
+  
     imgs: null,
     indicatorDots: false,
     vertical: false,
@@ -58,7 +58,7 @@ Page({
         that.setData({
           classInfo: data.data.classinfo,
           nodes:data.data.classinfo.details,
-          imgs: [getApp().globalData.BaseUrl +'/AdminSystem'+data.data.classinfo.imgcode]
+          imgs: getApp().globalData.BaseUrl +'/AdminSystem'+data.data.classinfo.imgcode
         })
       }
     })

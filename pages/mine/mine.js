@@ -81,5 +81,13 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  /**
+   * 拨打客服电话
+   */
+  makecall() {
+    wx.makePhoneCall({
+      phoneNumber: '053772781919' // 仅为示例，并非真实的电话号码
+    })
   }
 })
