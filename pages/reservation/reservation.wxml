@@ -48,6 +48,10 @@
           <image src='/images/jiaolian.png' style="width: 12px; height: 12px"></image>
           <text> {{item.coachname}}</text>
         </view>
+        <view>
+          <!-- <image src='/images/jiaolian.png' style="width: 12px; height: 12px"></image> -->
+          <text>适用年龄：{{item.agerange}}</text>
+        </view>
 
 
 

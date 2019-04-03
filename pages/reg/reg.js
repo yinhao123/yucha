@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    date: '2019-01-01',
     gender: ["男", "女"],
     genderIndex: 0,
   },
@@ -16,9 +17,14 @@ Page({
    */
   bindGenderChange: function (e) {
     console.log('picker account 发生选择改变，携带值为', e.detail.value);
-
     this.setData({
       genderIndex: e.detail.value
+    })
+  },
+  bindDateChange(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      date: e.detail.value
     })
   },
   onLoad: function (options) {

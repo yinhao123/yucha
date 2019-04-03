@@ -107,9 +107,49 @@ Page({
   /**
    * 约课中操作，取消约课
    */
-  cancelCourse:function () {
-    wx.makePhoneCall({
-      phoneNumber: '12345678' 
+  cancelCourse:function (e) {
+    console.log(e.target.dataset.appointmentid);
+    let user = wx.getStorageSync("user");
+    let userid = user.data.userInfo.userid;
+    let appointmentid = e.target.dataset.appointmentid;
+    var that = this;
+    wx.showModal({
+      title: '系统提示',
+      content: '你确定要取消该课程的预约？',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定');
+          var webData = {
+            "userid": userid,
+            "appointmentid": appointmentid
+          }
+          
+          utils.getWebDataWithPost({
+            url: "AdminSystem/eyas/wechat/updateAppointmentInfo",
+            param: webData,
+            method: "POST",
+            success: function (data) {
+              console.log(data);
+              if(data.success){
+              wx.showToast({
+                title: '取消成功',
+              })
+            }else{
+                wx.showToast({
+                  title: data.errormsg ?data.errormsg:"取消失败",
+                  icon: 'none',
+                })
+            }
+              // that.setData({
+              //   list: data.data.list
+              // });
+            }
+          })
+
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
     })
   }
 })

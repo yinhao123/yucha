@@ -35,6 +35,27 @@ function getWebDataWithPostOrGet(model) {
     }
   })
 }
+//网络请求方法
+function getWebDataWithPost(model) {
+  wx.request({
+    url: webUrl + model.url,
+    data: model.param,
+    header: {
+      "Content-Type": "application/json", //header: "application/x-www-form-urlencoded",
+      "openid": getApp().globalData.openid
+    },
+    method: model.method,
+    success: function (res) {
+      model.success(res.data)
+    },
+    fail: function (res) {
+      wx.showModal({
+        title: res,
+        showCancel: false
+      })
+    }
+  })
+}
 function byCodeGetOpenid()
 {
   var that = this;
@@ -81,6 +102,7 @@ function byCodeGetOpenid()
 // }
 module.exports = {
   getWebDataWithPostOrGet: getWebDataWithPostOrGet,
+  getWebDataWithPost: getWebDataWithPost,
   formatTime: formatTime,
   byCodeGetOpenid: byCodeGetOpenid
 }

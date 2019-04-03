@@ -41,9 +41,9 @@
                     <span class="weui-form-preview__value">{{item.atime}}</span>
                 </view>
             </view>
-            <!-- <view class="weui-form-preview__ft">
-                <a class="weui-form-preview__btn weui-form-preview__btn_primary" bindtap="cancelCourse" href="javascript:">操作</a>
-            </view> -->
+            <view class="weui-form-preview__ft">
+                <a class="weui-form-preview__btn weui-form-preview__btn_primary" bindtap="cancelCourse" data-appointmentid="{{item.appointmentid}}"  href="javascript:">取消预约</a>
+            </view>
         </view>
         </view>
 
