@@ -107,9 +107,8 @@ Page({
    * 联系客服
    */
   linkServer:function(){
-    // wx.showToast({
-    //   title: '请到前台咨询！',
-    //   icon: 'none',
-    // })
+    wx.makePhoneCall({
+      phoneNumber: '05372781919',
+    })
   }
 })

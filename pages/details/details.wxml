@@ -5,7 +5,7 @@
                 <view class="weui-media-box weui-media-box_text">
                     <text style='font-size:25px;' class="weui-media-box__title">{{record.coachname}}</text>
                       <!-- <view class="weui-badge" style="margin-left: 5px;">可约</view> -->
-                    <view class="weui-media-box__desc">上课前3个小时不能约课，若已经约课，上课前2小时不能取消预约。</view>
+                    <view class="weui-media-box__desc">{{classinfo.details}}</view>
                 </view>
 </view>
 <view  class="weui-cells">
@@ -19,9 +19,14 @@
              <view class="weui-cell weui-cell_access">
                 <view class="weui-cell__bd">
                     <text style="vertical-align: middle">授课教练</text>
-                
                 </view>
                 <view class="weui-cell__ft">{{record.coachname}}</view>
+            </view>
+                <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__bd">
+                    <text style="vertical-align: middle">适用年龄</text>
+                </view>
+                <view class="weui-cell__ft">{{record.agerange}}</view>
             </view>
              <view class="weui-cell weui-cell_access">
                 <view class="weui-cell__bd">

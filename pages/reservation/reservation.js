@@ -10,7 +10,7 @@ Page(
    * 页面的初始数据
    */
   data: {
-    array: [],
+    courseslist: [],
     index:0,
     userid:null,
     recordid:null,
@@ -56,10 +56,42 @@ Page(
       })
     },
     bindPickerChange(e) {
-      console.log('picker发送选择改变，携带值为', e.detail.value)
+      console.log('picker发送选择改变，携带值为', parseInt(e.detail.value)+1)
+      
       this.setData({
         index: e.detail.value
       })
+      let thisClassid = parseInt(e.detail.value) + 1;
+      var today = wx.getStorageSync("chooseDay");
+     let coursesList = wx.getStorageSync("courseslist");
+     
+     this.setData({
+       classinfo: coursesList[e.detail.value]
+     })
+     wx.setStorage({
+       key: 'classinfo',
+       data: coursesList[e.detail.value],
+     })
+     
+      var webData = {
+        "selectDate": today,
+        "classid": thisClassid
+      }
+      var that = this;
+      utils.getWebDataWithPostOrGet({
+        url: "AdminSystem/eyas/wechat/queryRecordInfoForPage",
+        param: webData,
+        method: "GET",
+        success: function (data) {
+          console.log("排课列表");
+          console.log(data);
+          that.setData({
+            list: data.data.list
+          })
+        }
+      })
+
+
     },
   selDay(e) {
     // console.log("点击事件")
@@ -76,6 +108,12 @@ Page(
     this.setData({
       currentData: e.currentTarget.dataset.index,
       selCurDate: tabDate
+    })
+    console.log("选择的tab日期"+tabDate);
+    console.log("选择的tab序号是" + e.currentTarget.dataset.index);
+    wx.setStorage({
+      key: 'chooseDay',
+      data: tabDate,
     })
     var that = this;
     utils.getWebDataWithPostOrGet({
@@ -122,6 +160,10 @@ Page(
           "selectDate": after_date,
           "classid": this.data.classinfo.classid
         }    
+        wx.setStorage({
+          key: 'chooseDay',
+          data: after_date,
+        })
         var that = this;
         utils.getWebDataWithPostOrGet({
           url: "AdminSystem/eyas/wechat/queryRecordInfoForPage",
@@ -159,6 +201,10 @@ Page(
           selCurDate: after_date
         })
         console.log(after_date);
+        wx.setStorage({
+          key: 'chooseDay',
+          data: after_date,
+        })
         var webData = {
           "selectDate": after_date,
           "classid":this.data.classinfo.classid
@@ -191,17 +237,46 @@ Page(
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
+    let classinfo = wx.getStorageSync("classinfo");
+    var id = parseInt(classinfo.classid)-1;
+    console.log("选择的id是"+id);
+    this.setData({
+      index:id
+    })
+    this.setData({
+      classinfo: classinfo
+    })
     // 这一页要获取到所有的课程,从本地获取之后要赋值给数组
     let courseslist = wx.getStorageSync("courseslist");
-      this.setData({
-        array:courseslist
-      })
-    let classinfo = wx.getStorageSync("classinfo");
-    // this.setData({
-    //   index:classinfo.classid
-    // })
     this.setData({
-      classinfo:classinfo
+      courseslist: courseslist
+    })
+   
+    // 获取到今天的日期存到Storage中
+    var day = new Date();
+    var todayData = utils.getNowFormatDate();
+    console.log("today is "+todayData);
+    wx.setStorage({
+      key: 'today',
+      data: todayData,
+    })
+    // 这个是在进入这个页面的时候就要加载今天的课程列表
+    var webData = {
+      "selectDate": todayData,
+      "classid": this.data.classinfo.classid
+    }
+    var that = this;
+    utils.getWebDataWithPostOrGet({
+      url: "AdminSystem/eyas/wechat/queryRecordInfoForPage",
+      param: webData,
+      method: "GET",
+      success: function (data) {
+        console.log("排课列表");
+        console.log(data);
+        that.setData({
+          list: data.data.list
+        })
+      }
     })
 
     try{
@@ -260,9 +335,41 @@ Page(
    * 生命周期函数--监听页面显示
    */
   onShow: function (e) {
+   
     let classinfo = wx.getStorageSync("classinfo");
+    console.log("Onshow课程id"+parseInt(classinfo.classid));
+
+    this.setData({
+      index: parseInt(classinfo.classid)-1
+    })
+
     this.setData({
       classinfo: classinfo
+    })
+    var todayData = utils.getNowFormatDate();
+    var webData = {
+      "selectDate": todayData,
+      "classid": parseInt(classinfo.classid) 
+    }
+    var that = this;
+    utils.getWebDataWithPostOrGet({
+      url: "AdminSystem/eyas/wechat/queryRecordInfoForPage",
+      param: webData,
+      method: "GET",
+      success: function (data) {
+        console.log("排课列表");
+        console.log(data);
+        that.setData({
+          list: data.data.list
+        })
+      }
+    })
+
+
+
+      let courseslist = wx.getStorageSync("courseslist");
+    this.setData({
+      courseslist: courseslist
     })
   },
 

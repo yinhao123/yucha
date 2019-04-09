@@ -11,7 +11,7 @@
         <view class="weui-msg__opr-area">
             <view class="weui-btn-area">
                 <button  bindtap='myPay' type = "primary" class="weui-btn weui-btn_primary">我已充值</button>
-                <button  bindtap='linkServer' open-type="contact" class="weui-btn weui-btn_default">联系客服</button>
+                <button  bindtap='linkServer' bindtap='linkServer' class="weui-btn weui-btn_default">联系客服</button>
             </view>
         </view>
 

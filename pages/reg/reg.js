@@ -88,6 +88,7 @@ Page({
       "username": e.detail.value.username,
       "telephone": e.detail.value.telephone,
       "sex": parseInt(e.detail.value.gender)+1,
+      "birthday": e.detail.value.birthday,
       "openid":openid
     }
     wx.redirectTo({

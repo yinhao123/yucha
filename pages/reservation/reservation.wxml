@@ -5,9 +5,12 @@
       <view class="placeholder ">课程名称</view>
     </view>
     <view class="weui-flex__item">
-      <view class="weui-cell__bd placeholder  borderL" bindtap='changeCourses' role="" aria-label="">
+      <!-- <view class="weui-cell__bd placeholder  borderL" bindtap='changeCourses' role="" aria-label="">
         {{classinfo.classname}}
-      </view>
+      </view> -->
+      <picker class="weui-cell__bd borderL" bindchange="bindPickerChange" value="{{index}}" range="{{courseslist}}" range-key="{{'classname'}}" >
+           <view class="weui-select  placeholder weui-select_in-select-after">{{courseslist[index].classname}}</view>
+       </picker>
     </view>
   </view>
   <view class='selTime'>

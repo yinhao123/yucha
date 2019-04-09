@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 11,
+			"current": 12,
 			"list": [
 				{
 					"id": -1,
@@ -120,6 +120,12 @@
 					"name": "预约详情页",
 					"pathName": "pages/details/details",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "充值",
+					"pathName": "pages/msgchongzhi/msgchongzhi",
 					"scene": null
 				}
 			]

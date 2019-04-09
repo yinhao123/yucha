@@ -19,7 +19,7 @@
                       </view>
                       <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
                           <view class="weui-media-box__title">{{item.classname}}</view>
-                           <view class="weui-media-box__desc">适用年龄：{{item.agerange}}</view>
+                           <!-- <view class="weui-media-box__desc">适用年龄：{{item.agerange}}</view> -->
                            <view class="weui-media-box__desc">课时：{{item.hours}}</view>
                           <view class="weui-media-box__desc">{{item.details}}</view>
                       </view>

@@ -8,7 +8,8 @@ Page({
   data: {
     userid:null,
     recordid:null,
-    record:null
+    record:null,
+    classinfo:null
   },
   /**
    * 预约课程
@@ -67,9 +68,15 @@ Page({
   onLoad: function (options) {
     // console.log(options.classid);
    let record = wx.getStorageSync('record');
+   let classinfo = wx.getStorageSync("classinfo");
    this.setData({
      record:record
+   });
+   this.setData({
+     classinfo:classinfo
    })
+
+
     this.setData({
       userid:options.userid
     })
