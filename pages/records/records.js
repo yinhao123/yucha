@@ -10,33 +10,15 @@ Page({
    */
   data: {
       list:1,
-      userid:null
+      userid:null,
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  //  let openid = wx.getStorageSync("openid");
-  //   var userData = {
-  //     openid: openid
-  //   }
-   
-  //   var that = this;
-  //   utils.getWebDataWithPostOrGet({
-  //     url: "AdminSystem/eyas/wechat/getUserInfoByOpenid",
-  //     param: userData,
-  //     method: "GET",
-  //     success: function (data) {
-  //       console.log(data.data.userInfo);
-  //       that.setData({
-  //         userid: data.data.userInfo.userid
-  //       });
-  //     }
-  //   })
-  //   console.log(this.data.userid)
-  //   var userid = getApp().globalData.user.data.userInfo.userid;
-
+  
     let user = wx.getStorageSync("user");
     let userid = user.data.userInfo.userid;
     var webData={
@@ -108,17 +90,21 @@ Page({
    * 约课中操作，取消约课
    */
   cancelCourse:function (e) {
-    console.log(e.target.dataset.appointmentid);
+    // console.log(e.target.dataset.appointmentid);
     let user = wx.getStorageSync("user");
     let userid = user.data.userInfo.userid;
     let appointmentid = e.target.dataset.appointmentid;
+    let status = e.target.dataset.status;
     var that = this;
+    if(status == 1){
+
+    
     wx.showModal({
       title: '系统提示',
       content: '你确定要取消该课程的预约？',
       success(res) {
         if (res.confirm) {
-          console.log('用户点击确定');
+        
           var webData = {
             "userid": userid,
             "appointmentid": appointmentid
@@ -134,15 +120,15 @@ Page({
               wx.showToast({
                 title: '取消成功',
               })
+                that.onLoad();
+              // 并且将取消预约设置为 已取消 颜色灰色 
             }else{
                 wx.showToast({
                   title: data.errormsg ?data.errormsg:"取消失败",
                   icon: 'none',
                 })
             }
-              // that.setData({
-              //   list: data.data.list
-              // });
+           
             }
           })
 
@@ -151,5 +137,55 @@ Page({
         }
       }
     })
+    } else if (status == 2) {
+        wx.showToast({
+          title: '该课程已签到',
+          icon: 'none'
+        })
+    } else if (status == 3) {
+      wx.showToast({
+        title: '该课程已取消预约',
+        icon: 'none'
+      })
+      // 重新预约该课程
+      // wx.showModal({
+      //   title: '系统提示',
+      //   content: '你确定要重新预约该课程？',
+      //   success(res) {
+      //     if (res.confirm) {
+
+      //       var webData = {
+      //         "userid": userid,
+      //         "appointmentid": appointmentid
+      //       }
+
+      //       utils.getWebDataWithPost({
+      //         url: "AdminSystem/eyas/wechat/saveAppointmentInfo",
+      //         param: webData,
+      //         method: "POST",
+      //         success: function (data) {
+      //           console.log(data);
+      //           if (data.success) {
+      //             wx.showToast({
+      //               title: '预约成功',
+      //             })
+      //             that.onLoad();
+      //             // 并且将取消预约设置为 已取消 颜色灰色 
+      //           } else {
+      //             wx.showToast({
+      //               title: data.errormsg ? data.errormsg : "预约失败",
+      //               icon: 'none',
+      //             })
+      //           }
+
+      //         }
+      //       })
+
+      //     } else if (res.cancel) {
+      //       console.log('用户点击取消')
+      //     }
+      //   }
+      // })
+    }
   }
 })

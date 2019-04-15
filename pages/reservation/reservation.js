@@ -5,13 +5,12 @@ var utils = require('../../utils/util.js');
 
 Page(
   {
-
   /**
-   * 页面的初始数据
+   * 页面的初始数据影片
    */
   data: {
     courseslist: [],
-    index:0,
+    index:1,
     userid:null,
     recordid:null,
     hday :formate(),
@@ -238,10 +237,13 @@ Page(
    */
   onLoad: function (e) {
     let classinfo = wx.getStorageSync("classinfo");
-    var id = parseInt(classinfo.classid)-1;
-    console.log("选择的id是"+id);
+    console.log("Onshow课程id" + parseInt(classinfo.classid));
+    let courseslists = wx.getStorageSync("courseslist");
+    console.log("classinfoIndex");
+    let indexOf = courseslists.findIndex(classes => classes.classid === classinfo.classid);
+    console.log(courseslists.findIndex(classes => classes.classid === classinfo.classid));
     this.setData({
-      index:id
+      index: indexOf
     })
     this.setData({
       classinfo: classinfo
@@ -338,9 +340,13 @@ Page(
    
     let classinfo = wx.getStorageSync("classinfo");
     console.log("Onshow课程id"+parseInt(classinfo.classid));
-
+    let courseslists = wx.getStorageSync("courseslist");
+    console.log("classinfoIndex");
+    let indexOf = courseslists.findIndex(classes => classes.classid === classinfo.classid); 
+    console.log(courseslists.findIndex(classes => classes.classid ===classinfo.classid));
     this.setData({
-      index: parseInt(classinfo.classid)-1
+     
+    index:indexOf
     })
 
     this.setData({

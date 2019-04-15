@@ -2,3 +2,10 @@
 .weui-form-preview {
   margin-bottom: 50rpx;
 }
+.isCancel {
+  color: #e64340;
+}
+
+.isUsed {
+  color: #888888;
+}
