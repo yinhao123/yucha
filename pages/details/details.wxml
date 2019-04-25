@@ -5,7 +5,7 @@
                 <view class="weui-media-box weui-media-box_text">
                     <text style='font-size:25px;' class="weui-media-box__title">{{record.coachname}}</text>
                       <!-- <view class="weui-badge" style="margin-left: 5px;">可约</view> -->
-                    <view class="weui-media-box__desc">{{classinfo.details}}</view>
+                    <view class="weui-media-box__desc">{{record.details}}</view>
                 </view>
 </view>
 <view  class="weui-cells">

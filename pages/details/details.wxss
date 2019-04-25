@@ -3,3 +3,7 @@
   margin-top: 60rpx;
   margin-bottom: 120rpx;
 }
+.weui-media-box__desc{
+  -webkit-line-clamp:4;
+
+}
