@@ -61,11 +61,11 @@
       </view>
       <view class='makR'>
         <view wx:if="{{item.maxnum-item.currnum > 0}}">
-          <button class="weui-btn mini-btn" catchtap='appointment' data-index="{{item.recordid}}" type="primary" size="mini">预约</button>
+          <button class="weui-btn mini-btn"  data-index="{{item.recordid}}" type="primary" size="mini">预约</button>
         </view>
 
         <view wx:else>
-          <button class="weui-btn mini-btn" bindtap='appointment' type="default" disabled='true' size="mini">预约</button>
+          <button class="weui-btn mini-btn"  type="default" disabled='true' size="mini">预约</button>
 
         </view>
       </view>

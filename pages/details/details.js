@@ -9,18 +9,101 @@ Page({
     userid:null,
     recordid:null,
     record:null,
-    classinfo:null
+    classinfo:null,
+    checked:1,
+    children: [{ cid: 2, userid: 9, cname: "测试娃1", birthday: "2016-04-24", csex: "1" },
+      { cid: 3, userid: 9, cname: "测试娃2", birthday: "2016-04-24", csex: "1" }
+    ],
+   childrens:[]
+
+  },
+  checkboxChange: function (e) {
+    console.log('checkbox发生change事件，携带value值为：', e.detail);
+    this.setData({
+      childrens:e.detail.value
+    })
+    var checkboxItems = this.data.children, 
+    values = e.detail.value;
+    for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
+      checkboxItems[i].checked = false;
+      for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
+        if (checkboxItems[i].cid == values[j]) {
+          console.log("改变check" + i + "....." + checkboxItems[i].name);
+          checkboxItems[i].checked = true;
+          break;
+        }
+      }
+    }
+
+    this.setData({
+      children: checkboxItems
+    });
+  },
+  showModal(e) {
+    this.setData({
+      modalName: e.currentTarget.dataset.target
+    })
+  },
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
+  /**
+   * 选课之前先选择孩子
+   */
+  bindCountryChange: function (e) {
+    console.log('picker country 发生选择改变，携带值为', e.detail.value);
+
+    this.setData({
+      countryIndex: e.detail.value
+    })
+  },
+
+  /**
+   * 在选课的时候，增加孩子选项
+   */
+  open: function () {
+    wx.showActionSheet({
+      itemList: this.setData.children,
+      success: function (res) {
+        if (!res.cancel) {
+          console.log(res.tapIndex)
+        }
+      }
+    });
   },
   /**
    * 预约课程
    */
-  appointClass()
+  appointClass(e)
   {
 
-    let userid = this.data.userid;
+    console.log("孩子的数量");
+    console.log(this.data.childrens);
+    console.log(this.data.childrens.length);
+    if(this.data.childrens.length == 0){
+       wx.showModal({
+         title: '系统提示',
+         content: '请先选择报名本课程的孩子',
+         success(res) {
+           if (res.confirm) {
+             console.log('用户点击确定')
+           } else if (res.cancel) {
+             console.log('用户点击取消')
+           }
+         }
+       })
+      
+    }else{
+      console.log("childrens类型" + typeof (this.data.childrens));
+    let userid = parseInt(this.data.userid);
     let recordid = this.data.record.recordid;
+    let childrens = JSON.stringify(this.data.childrens);
     console.log("userid"+userid);
     console.log("recordid"+recordid);
+
+    var th = this;
     // 预约之前前进行确认提示
     wx.showModal({
       title: '预约提示',
@@ -32,13 +115,18 @@ Page({
           // 请求约课信息
           var webData = {
             "userid": userid,
-            "recordid": recordid
+            "recordid": recordid,
+            "childrens": childrens
           }
           var that = this;
 
-          utils.getWebDataWithPostOrGet({
-            url: "AdminSystem/eyas/wechat/saveAppointmentInfo",
-            param: webData,
+          wx.request({
+            url: "https://sanzhitu.iaimai.com:8080/AdminSystem/eyas/wechat/saveAppointmentInfo",
+            data: webData,
+            header: {
+              "Content-Type": "application/json", //header: "application/x-www-form-urlencoded",
+              "openid": getApp().globalData.openid
+            },
             method: "POST",
             success: function (data) {
               console.log(data.success);
@@ -60,6 +148,7 @@ Page({
         }
       }
     })
+    }
   },
 
   /**
@@ -79,10 +168,60 @@ Page({
 
     this.setData({
       userid:options.userid
+    });
+    /**
+     * 请求孩子信息，并缓存在Storage中
+     * 
+     */
+    var webData = {
+      "userid": 9,
+     
+    }
+    var that = this;
+
+    utils.getWebDataWithPostOrGet({
+      url: "/AdminSystem/eyas/wechat/queryChildrenInfoByUserId",
+      param: webData,
+      method: "GET",
+      success: function (data) {
+        console.log(data.success);
+        if (data.success) {
+          console.log("Success get Children info.");
+          console.log(data.data.list);
+          let ch = data.data.list;
+          
+          if(ch.length == 1){
+            var ch2 = ch.map(function (obj, index) {
+              obj.id = index;//添加id属性
+              obj.checked = 1;
+              return obj;
+            });
+
+            console.log(ch2);
+            let arrayChildrens = new Array();
+            arrayChildrens[0]=ch2[0].cid
+            console.log("arrayChildrens类型" + typeof (arrayChildrens));
+            // 如果只有一个孩子，则默认是选中的
+            that.setData({
+              childrens: arrayChildrens
+            })
+            wx.setStorageSync("children", ch2);
+            that.setData({
+              children: ch2
+            })
+            
+          
+          }
+          wx.setStorageSync("children", data.data.list);
+          that.setData({
+            children:data.data.list
+          })
+        } else {
+         console.exception("请求孩子信息失败");
+        }
+      }
     })
-    // this.setData({
-    //   classinfo:options.classinfo
-    // })
+    
   },
 
   /**

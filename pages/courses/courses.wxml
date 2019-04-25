@@ -14,7 +14,7 @@
                 <view  wx:for="{{list}}" wx:key="index">
                   <navigator class='lists' url="/pages/index/index?cassid={{item.classid}}" open-type="navigate" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
                       <view  class="weui-media-box__hd lists weui-media-box__hd_in-appmsg">
-                          <image class="weui-media-box__thumb" src="https://sanzhitu.iaimai.com:8080/AdminSystem/{{item.imgcode}}" />
+                          <image class="weui-media-box__thumb" mode="aspectFill" src="https://sanzhitu.iaimai.com:8080/AdminSystem/{{item.imgcode}}" />
                            <!-- <image class="weui-media-box__thumb" src="/images/avatar.jpg" /> -->
                       </view>
                       <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
