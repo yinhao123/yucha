@@ -11,8 +11,7 @@ Page({
     record:null,
     classinfo:null,
     checked:1,
-    children: [{ cid: 2, userid: 9, cname: "测试娃1", birthday: "2016-04-24", csex: "1" },
-      { cid: 3, userid: 9, cname: "测试娃2", birthday: "2016-04-24", csex: "1" }
+    children: [{ cname: "Loading..." }
     ],
    childrens:[]
 
@@ -99,7 +98,7 @@ Page({
       console.log("childrens类型" + typeof (this.data.childrens));
     let userid = parseInt(this.data.userid);
     let recordid = this.data.record.recordid;
-    let childrens = JSON.stringify(this.data.childrens);
+      let childrens = parseInt(this.data.childrens.join());
     console.log("userid"+userid);
     console.log("recordid"+recordid);
 
@@ -129,15 +128,17 @@ Page({
             },
             method: "POST",
             success: function (data) {
-              console.log(data.success);
-              if (data.success) {
+              console.log("Get back data");
+              console.log(data);
+              if (data.data.success) {
                 // 跳转到约课成功的页面
                 wx.redirectTo({
                   url: '/pages/msgsuccess/msgsuccess'
                 })
               } else {
+                console.log( data.data.errormsg);
                 wx.redirectTo({
-                  url: '/pages/msgwarn/msgwarn?errormsg=' + data.errormsg
+                  url: '/pages/msgwarn/msgwarn?errormsg=' + data.data.errormsg
                 })
 
               }
@@ -174,7 +175,7 @@ Page({
      * 
      */
     var webData = {
-      "userid": 9,
+      "userid": options.userid,
      
     }
     var that = this;

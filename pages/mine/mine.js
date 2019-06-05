@@ -7,7 +7,8 @@ Page({
    */
   data: {
       userInfo:{},
-      restclass:"正在获取..."
+      restclass:"正在获取...",
+      tiyannums:null
   },
 
   /**
@@ -37,7 +38,9 @@ Page({
    */
   onShow: function () {
     let user = wx.getStorageSync("user");
-
+    this.setData({
+      tiyannums: user.data.userInfo.tiyannums
+    })
     this.setData({
       restclass:user.data.userInfo.restclass 
     })

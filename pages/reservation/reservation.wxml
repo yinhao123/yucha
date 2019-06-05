@@ -55,19 +55,23 @@
           <!-- <image src='/images/jiaolian.png' style="width: 12px; height: 12px"></image> -->
           <text>适用年龄：{{item.agerange}}</text>
         </view>
-
-
-
       </view>
+
       <view class='makR'>
-        <view wx:if="{{item.maxnum-item.currnum > 0}}">
-          <button class="weui-btn mini-btn"  data-index="{{item.recordid}}" type="primary" size="mini">预约</button>
+        <view wx:if="{{item.maxnum-item.currnum > 0 && item.status == 1}}">
+          <button class="weui-btn mini-btn"  data-index="{{item.recordid}}" type="primary" size="mini">报名中</button>
         </view>
 
-        <view wx:else>
-          <button class="weui-btn mini-btn"  type="default" disabled='true' size="mini">预约</button>
-
+        <view wx:elif = "{{item.maxnum-item.currnum <= 0 }}">
+          <button class = "weui-btn mini-btn"  type="default" disabled='true' size="mini">已报满</button>
         </view>
+       <view wx:elif="{{item.status == 2}}">
+          <button class="weui-btn mini-btn"  type="default" disabled='true' size="mini">上课中</button>
+        </view>
+         <view wx:elif="{{item.status == 3}}">
+          <button class="weui-btn mini-btn"  type="default" disabled='true' size="mini">已结束</button>
+        </view>
+
       </view>
     </view>
     <view class='baomingnumbers'>

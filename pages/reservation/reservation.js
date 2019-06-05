@@ -14,7 +14,6 @@ Page(
     userid:null,
     recordid:null,
     hday :formate(),
-    //currentData: getDay(),
     currentData: getDay(),
     list:null,
     classinfo:null,
@@ -337,22 +336,23 @@ Page(
    * 生命周期函数--监听页面显示
    */
   onShow: function (e) {
-   
     let classinfo = wx.getStorageSync("classinfo");
     console.log("Onshow课程id"+parseInt(classinfo.classid));
     let courseslists = wx.getStorageSync("courseslist");
     console.log("classinfoIndex");
     let indexOf = courseslists.findIndex(classes => classes.classid === classinfo.classid); 
     console.log(courseslists.findIndex(classes => classes.classid ===classinfo.classid));
-    this.setData({
-     
+    this.setData({    
     index:indexOf
     })
-
     this.setData({
       classinfo: classinfo
     })
     var todayData = utils.getNowFormatDate();
+    // 这儿应该用选择的日期，而不是今天 2019年6月5日 08:34:05 
+   // let chooseDay = wx.getStorageSync("chooseDay");
+
+
     var webData = {
       "selectDate": todayData,
       "classid": parseInt(classinfo.classid) 
@@ -362,20 +362,15 @@ Page(
       url: "AdminSystem/eyas/wechat/queryRecordInfoForPage",
       param: webData,
       method: "GET",
-      success: function (data) {
-        console.log("排课列表");
-        console.log(data);
+      success: function (data) {     
         that.setData({
           list: data.data.list
         })
       }
     })
-
-
-
       let courseslist = wx.getStorageSync("courseslist");
-    this.setData({
-      courseslist: courseslist
+      this.setData({
+           courseslist: courseslist
     })
   },
 
@@ -432,7 +427,6 @@ Page(
             "recordid": recordid
           }
           var that = this;
-        
           utils.getWebDataWithPostOrGet({
             url: "AdminSystem/eyas/wechat/saveAppointmentInfo",
             param: webData,
@@ -453,7 +447,7 @@ Page(
             }
           })
         } else if (res.cancel) {
-          console.log('用户点击取消')
+        
         }
       }
     })
@@ -466,7 +460,6 @@ var tttddd = utils.formatTime(new Date());
 
 function getDates(w) {
   var new_Date = new Date();
-  // console.log(utils.formatTime(new_Date))
   var timesStamp = new_Date.getTime()+w*7*24*60*60*1000;
   var currenDay = new_Date.getDay();
   var dates = [];
@@ -506,10 +499,10 @@ function formate(msg){
     w = 0;
   }
   var dayArr = getDates(w);
-  // console.log(dayArr);
+  
   for(var i = 0; i<dayArr.length; i++){
     var days = []
-    // console.log(i);
+    
       if(i == 0){
         var week = "周一";
         var day1 = dayArr[i].split("-");
@@ -564,7 +557,7 @@ function formate(msg){
   return dayArr;
 
 }
-//获得当前是周几
+// 获得当前是周几
 function getDay(){
   // debugger;
   var week;

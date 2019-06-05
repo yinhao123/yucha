@@ -10,16 +10,16 @@
                     <label class="weui-form-preview__label">您的手机</label>
                     <span class="weui-form-preview__value" style="color:green;">{{userInfo.telephone}}</span>
                 </view>
-                 <view class="weui-form-preview__item">
+                 <!-- <view class="weui-form-preview__item">
                     <label class="weui-form-preview__label">您的性别</label>
                     <span class="weui-form-preview__value" style="color:green;"> <view wx:if="{{userInfo.sex > 1}}">女
                  
                   </view>
                    <view wx:else>男</view></span>
-                </view>
+                </view> -->
                   <view class="weui-form-preview__item">
                     <label class="weui-form-preview__label">剩余课时</label>
-                    <span class="weui-form-preview__value" style="color:green;">{{userInfo.restclass}}课时</span>
+                    <span class="weui-form-preview__value" style="color:green;">{{userInfo.restclass+userInfo.tiyannums}}课时</span>
                 </view>
                
               

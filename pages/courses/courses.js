@@ -138,9 +138,13 @@ Page({
         }
       })
     }
-
+    
+    var user =  wx.getStorageSync("user");
+     console.log("用户id");
+     var userid = user.data.userInfo.userid;
+     console.log(userid);
     var webData = {
-     
+      "userid":userid
     }
     var that = this;
     utils.getWebDataWithPostOrGet({

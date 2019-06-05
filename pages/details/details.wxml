@@ -2,113 +2,122 @@
 
 <view class="page__bd">
 
-                <view class="weui-media-box weui-media-box_text">
-                    <text style='font-size:25px;' class="weui-media-box__title">{{record.coachname}}</text>
-                      <!-- <view class="weui-badge" style="margin-left: 5px;">可约</view> -->
-                    <view class="weui-media-box__desc">{{record.details}}</view>
-                </view>
+  <view class="weui-media-box weui-media-box_text">
+    <text style='font-size:25px;' class="weui-media-box__title">{{record.coachname}}</text>
+    <!-- <view class="weui-badge" style="margin-left: 5px;">可约</view> -->
+    <view class="weui-media-box__desc">{{record.details}}</view>
+  </view>
 </view>
-<view  class="weui-cells">
-            <view class="weui-cell weui-cell_access">
-                <view class="weui-cell__bd">
-                    <text style="vertical-align: middle">课程</text>
-                </view>
-                <view class="weui-cell__ft">{{record.classname}}</view>
-            </view>
+<view class="weui-cells">
+  <view class="weui-cell weui-cell_access">
+    <view class="weui-cell__bd">
+      <text style="vertical-align: middle">课程</text>
+    </view>
+    <view class="weui-cell__ft">{{record.classname}}</view>
+  </view>
 
-             <view class="weui-cell weui-cell_access">
-                <view class="weui-cell__bd">
-                    <text style="vertical-align: middle">授课教练</text>
-                </view>
-                <view class="weui-cell__ft">{{record.coachname}}</view>
-            </view>
-                <view class="weui-cell weui-cell_access">
-                <view class="weui-cell__bd">
-                    <text style="vertical-align: middle">适用年龄</text>
-                </view>
-                <view class="weui-cell__ft">{{record.agerange}}</view>
-            </view>
-             <view class="weui-cell weui-cell_access">
-                <view class="weui-cell__bd">
-                    <text style="vertical-align: middle">授课时间</text>
-                
-                </view>
-                <view class="weui-cell__ft">{{record.starttime}}</view>
-            </view>
-               <view class="weui-cell weui-cell_access">
-                <view class="weui-cell__bd">
-                    <text style="vertical-align: middle">上课时间</text>
-                </view>
-                <view class="weui-cell__ft">{{record.begintime}}</view>
-            </view>
-            <view class="weui-cell weui-cell_access">
-                <view class="weui-cell__bd">
-                    <text style="vertical-align: middle">下课时间</text>
-                
-                </view>
-                <view class="weui-cell__ft">{{record.endtime}}</view>
-            </view>
-            <view class="weui-cell weui-cell_access">
-                <view class="weui-cell__bd">
-                    <text style="vertical-align: middle">上课地点</text>
-                
-                </view>
-                <view class="weui-cell__ft">{{record.address}}</view>
-            </view>
-             <view class="weui-cell weui-cell_access">
-                <view class="weui-cell__bd">
-                    <text style="vertical-align: middle">最大上课人数</text>
-                
-                </view>
-                <view class="weui-cell__ft">{{record.maxnum}}</view>
-            </view>
-               <view class="weui-cell weui-cell_access">
-                <view class="weui-cell__bd">
-                    <text style="vertical-align: middle">当前报名人数</text>
-                
-                </view>
-                <view class="weui-cell__ft">{{record.currnum}}</view>
-            </view>
-             <view class="weui-cell weui-cell_access">
-                <view class="weui-cell__bd">
-                    <text style="vertical-align: middle">学时</text>
-                
-                </view>
-                <view class="weui-cell__ft">{{record.recordhour}}</view>
-            </view>
+  <view class="weui-cell weui-cell_access">
+    <view class="weui-cell__bd">
+      <text style="vertical-align: middle">授课教练</text>
+    </view>
+    <view class="weui-cell__ft">{{record.coachname}}</view>
+  </view>
+  <view class="weui-cell weui-cell_access">
+    <view class="weui-cell__bd">
+      <text style="vertical-align: middle">适用年龄</text>
+    </view>
+    <view class="weui-cell__ft">{{record.agerange}}</view>
+  </view>
+  <view class="weui-cell weui-cell_access">
+    <view class="weui-cell__bd">
+      <text style="vertical-align: middle">授课时间</text>
 
+    </view>
+    <view class="weui-cell__ft">{{record.starttime}}</view>
+  </view>
+  <view class="weui-cell weui-cell_access">
+    <view class="weui-cell__bd">
+      <text style="vertical-align: middle">上课时间</text>
+    </view>
+    <view class="weui-cell__ft">{{record.begintime}}</view>
+  </view>
+  <view class="weui-cell weui-cell_access">
+    <view class="weui-cell__bd">
+      <text style="vertical-align: middle">下课时间</text>
 
-  
-             
-   
-                
+    </view>
+    <view class="weui-cell__ft">{{record.endtime}}</view>
+  </view>
+  <view class="weui-cell weui-cell_access">
+    <view class="weui-cell__bd">
+      <text style="vertical-align: middle">上课地点</text>
 
+    </view>
+    <view class="weui-cell__ft">{{record.address}}</view>
+  </view>
+  <view class="weui-cell weui-cell_access">
+    <view class="weui-cell__bd">
+      <text style="vertical-align: middle">最大上课人数</text>
+
+    </view>
+    <view class="weui-cell__ft">{{record.maxnum}}</view>
+  </view>
+  <view class="weui-cell weui-cell_access">
+    <view class="weui-cell__bd">
+      <text style="vertical-align: middle">当前报名人数</text>
+
+    </view>
+    <view class="weui-cell__ft">{{record.currnum}}</view>
+  </view>
+  <view class="weui-cell weui-cell_access">
+    <view class="weui-cell__bd">
+      <text style="vertical-align: middle">学时</text>
+
+    </view>
+    <view class="weui-cell__ft">{{record.recordhour}}</view>
+  </view>
 </view>
 
-     <view class="weui-cells__title">请选择报名本课程的孩子姓名</view>
-        <view class="weui-cells weui-cells_after-title">
-            <checkbox-group bindchange="checkboxChange">
-                <label class="weui-cell weui-check__label" wx:for="{{children}}" wx:key="cid">
-                    <checkbox class="weui-check" value="{{item.cid}}" checked="{{item.checked}}"/>
+<view class="weui-cells__title">请选择报名本课程的孩子姓名</view>
+<view class="weui-cells weui-cells_after-title">
+  <checkbox-group bindchange="checkboxChange">
+    <label class="weui-cell weui-check__label" wx:for="{{children}}" wx:key="cid">
+      <checkbox class="weui-check" value="{{item.cid}}" checked="{{item.checked}}" />
 
-                    <view class="weui-cell__hd weui-check__hd_in-checkbox">
-                        <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
-                        <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
-                    </view>
-                    <view class="weui-cell__bd">{{item.cname}}{{item.checked}}</view>
-                </label>
-            </checkbox-group>
-           
-        </view>
+      <view class="weui-cell__hd weui-check__hd_in-checkbox">
+        <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+        <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
+      </view>
+      <view class="weui-cell__bd">{{item.cname}}</view>
+    </label>
+  </checkbox-group>
 
-
-<view wx:if="{{record.currnum < record.maxnum }}"><button class='appointButton' bindtap='appointClass' style='width:80%;' type='primary'>
-  点击预约课程
-</button>
-                 
-                  </view>
-                   <view wx:else><button class='appointButton' bindtap='appointClass' disabled='true' style='width:80%;' >
-  预约人数已满
-</button></view>
+</view>
 
 
+<view wx:if="{{record.currnum < record.maxnum && record.status == 1}}">
+  <button class='appointButton' bindtap='appointClass' style='width:80%;' type='primary'>
+    点击预约课程
+  </button>
+</view>
+<view wx:elif="{{record.currnum >= record.maxnum }}">
+  <button class='appointButton' bindtap='appointClass' disabled='true' style='width:80%;'>
+    预约人数已满
+  </button>
+</view>
+
+<view wx:elif="{{record.status == 2 }}">
+  <button class='appointButton' bindtap='appointClass' disabled='true' style='width:80%;'>
+    该课程已经开课
+  </button>
+</view>
+<view wx:elif="{{record.status == 3 }}">
+  <button class='appointButton' bindtap='appointClass' disabled='true' style='width:80%;'>
+    该课程已结束
+  </button>
+</view>
+<view wx:else>
+  <button class='appointButton' bindtap='appointClass' disabled='true' style='width:80%;'>
+    报名拥挤，请稍后再试
+  </button>
+</view>

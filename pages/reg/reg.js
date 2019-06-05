@@ -125,7 +125,7 @@ Page({
         console.log(app.globalData.cMember);
         app.globalData.cMember = true;
         console.log(app.globalData.cMember);
-        if (data.success) {
+        
           wx.showToast({
             title: '注册成功',
             icon: 'success',
@@ -134,7 +134,7 @@ Page({
             wx.reLaunch({
               url: '/pages/msgchongzhi/msgchongzhi'
             })
-        }
+        
       }
     })
 
@@ -142,29 +142,29 @@ Page({
 
 
     
-    console.log(webData);
-    var that = this;
-    utils.getWebDataWithPostOrGet({
-      url: "AdminSystem/eyas/wechat/register",
-      param: webData,
-      method: "POST",
-      success: function (data) {
-        // console.log(data.success);
-        console.log(app.globalData.cMember);
-        app.globalData.cMember = true;
-        console.log(app.globalData.cMember);
-        if (data.success){
-          wx.showToast({
-            title: '注册成功',
-            icon: 'success',
-            duration: 2000
-          }),
-            wx.reLaunch({
-              url: '/pages/msgchongzhi/msgchongzhi'
-            })
-        }
-      }
-    })
+    // console.log(webData);
+    // var that = this;
+    // utils.getWebDataWithPostOrGet({
+    //   url: "AdminSystem/eyas/wechat/register",
+    //   param: webData,
+    //   method: "POST",
+    //   success: function (data) {
+    //     // console.log(data.success);
+    //     console.log(app.globalData.cMember);
+    //     app.globalData.cMember = true;
+    //     console.log(app.globalData.cMember);
+    //     if (data.success){
+    //       wx.showToast({
+    //         title: '注册成功',
+    //         icon: 'success',
+    //         duration: 2000
+    //       }),
+    //         wx.reLaunch({
+    //           url: '/pages/msgchongzhi/msgchongzhi'
+    //         })
+    //     }
+    //   }
+    // })
 
   }
 })

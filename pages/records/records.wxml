@@ -21,6 +21,9 @@
             <view class="weui-form-preview__item">
               <text class="weui-form-preview__label">课程名称</text>
               <text class="weui-form-preview__value">{{item.classname}}</text>
+            </view><view class="weui-form-preview__item">
+              <text class="weui-form-preview__label">孩子姓名</text>
+              <text class="weui-form-preview__value">{{item.cname}}</text>
             </view>
             <view class="weui-form-preview__item">
               <label class="weui-form-preview__label">课程教练</label>

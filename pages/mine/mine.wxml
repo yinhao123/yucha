@@ -8,7 +8,8 @@
           <text>{{userInfo.nickName}}</text>
       </view>
      <view class="testclass">
-     <text>剩余课时：{{restclass}}</text>
+      
+     <text>剩余课时：{{restclass+tiyannums}}</text>
      </view>
     </view>
 </view>
