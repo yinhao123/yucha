@@ -55,10 +55,11 @@ Page(
     },
     bindPickerChange(e) {
       console.log('picker发送选择改变，携带值为', parseInt(e.detail.value)+1)
-      
+      console.log(e.currentTarget.dataset);
       this.setData({
         index: e.detail.value
       })
+
       let thisClassid = parseInt(e.detail.value) + 1;
       var today = wx.getStorageSync("chooseDay");
      let coursesList = wx.getStorageSync("courseslist");
@@ -66,6 +67,7 @@ Page(
      this.setData({
        classinfo: coursesList[e.detail.value]
      })
+
      wx.setStorage({
        key: 'classinfo',
        data: coursesList[e.detail.value],
@@ -73,7 +75,7 @@ Page(
      
       var webData = {
         "selectDate": today,
-        "classid": thisClassid
+        "classid": coursesList[e.detail.value].classid,
       }
       var that = this;
       utils.getWebDataWithPostOrGet({
@@ -81,7 +83,7 @@ Page(
         param: webData,
         method: "GET",
         success: function (data) {
-          console.log("排课列表");
+         
           console.log(data);
           that.setData({
             list: data.data.list
@@ -92,13 +94,12 @@ Page(
 
     },
   selDay(e) {
-    // console.log("点击事件")
+    
     let cDate = new Date();
     let cYear = cDate.getFullYear();
     let cMandD = e.currentTarget.dataset.query;
     let tabDate = cYear+"-"+cMandD;
-    console.log(tabDate);
-    // console.log(e.currentTarget.dataset.query);
+   
     var webData = {
       "selectDate": tabDate,
       "classid":this.data.classinfo.classid
@@ -261,6 +262,7 @@ Page(
       key: 'today',
       data: todayData,
     })
+
     // 这个是在进入这个页面的时候就要加载今天的课程列表
     var webData = {
       "selectDate": todayData,
@@ -305,12 +307,9 @@ Page(
     }catch(e){
       
     }
-
     var webData = {
      "selectDate": getNowFormatDate(),
-  
     }
-  
     var that = this;
     utils.getWebDataWithPostOrGet({
       url: "AdminSystem/eyas/wechat/queryRecordInfoForPage",
@@ -336,12 +335,13 @@ Page(
    * 生命周期函数--监听页面显示
    */
   onShow: function (e) {
+
     let classinfo = wx.getStorageSync("classinfo");
-    console.log("Onshow课程id"+parseInt(classinfo.classid));
+   
     let courseslists = wx.getStorageSync("courseslist");
-    console.log("classinfoIndex");
+    
     let indexOf = courseslists.findIndex(classes => classes.classid === classinfo.classid); 
-    console.log(courseslists.findIndex(classes => classes.classid ===classinfo.classid));
+  
     this.setData({    
     index:indexOf
     })
@@ -349,12 +349,13 @@ Page(
       classinfo: classinfo
     })
     var todayData = utils.getNowFormatDate();
-    // 这儿应该用选择的日期，而不是今天 2019年6月5日 08:34:05 
-   // let chooseDay = wx.getStorageSync("chooseDay");
-
-
+   
+    let chooseDay = wx.getStorageSync("chooseDay");
+    this.setData({
+        currentData: getOneDay(chooseDay)
+        })
     var webData = {
-      "selectDate": todayData,
+      "selectDate": chooseDay,
       "classid": parseInt(classinfo.classid) 
     }
     var that = this;
@@ -406,21 +407,20 @@ Page(
    */
   appointment: function (e)
   {
-    console.log(e.target.dataset.index);
+   
     let recordid = e.target.dataset.index;
     let user = wx.getStorageSync("user");
     let userid = user.data.userInfo.userid;
     let course = wx.getStorageSync("classinfo");
     let classid = course.classid;
-    console.log("userid : "+userid);
-    console.log("classid : "+classid);
+  
     let that = this;
     wx.showModal({
       title: '约课提示',
       content: '约课成功后,不能取消。点击确定，马上预约。',
       success(res) {
         if (res.confirm) {
-          console.log('用户点击确定');
+         
           // 请求约课信息
           var webData = {
             "userid":userid,
@@ -432,7 +432,7 @@ Page(
             param: webData,
             method: "POST",
             success: function (data) {
-              console.log(data.success);
+            
               if (data.success){
                 // 跳转到约课成功的页面
                 wx.redirectTo({
@@ -557,6 +557,36 @@ function formate(msg){
   return dayArr;
 
 }
+// 给定一天判断是周几
+function getOneDay(chooseDay){
+  var week;
+  var weeks = new Date(Date.parse(chooseDay)).getDay();
+  switch (weeks) {
+    case 0:
+      week = 6;
+      break;
+    case 1:
+      week = 0;
+      break;
+    case 2:
+      week = 1;
+      break;
+    case 3:
+      week = 2;
+      break;
+    case 4:
+      week = 3;
+      break;
+    case 5:
+      week = 4;
+      break;
+    case 6:
+      week = 5;
+      break;
+  }
+  return week;
+}
+
 // 获得当前是周几
 function getDay(){
   // debugger;

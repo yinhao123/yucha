@@ -12,8 +12,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      console.log("预约失败页面");
-      console.log(options);
+    
       this.setData({
         errormsg:options.errormsg
       })

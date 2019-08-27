@@ -84,7 +84,7 @@ function byCodeGetOpenid()
           }
         })
       } else {
-        console.log('登录失败！' + res.errMsg);
+       // console.log('登录失败！' + res.errMsg);
 
         wx.showToast({
           title: '系统出bug了',
@@ -111,10 +111,7 @@ function getNowFormatDate() {
   var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate;
   return currentdate;
 }
-// 导出模块
-// module.exports = {
-//   getWebDataWithPostOrGet: getWebDataWithPostOrGet
-// }
+
 module.exports = {
   getWebDataWithPostOrGet: getWebDataWithPostOrGet,
   getWebDataWithPost: getWebDataWithPost,

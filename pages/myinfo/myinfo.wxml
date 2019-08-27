@@ -21,6 +21,10 @@
                     <label class="weui-form-preview__label">剩余课时</label>
                     <span class="weui-form-preview__value" style="color:green;">{{userInfo.restclass+userInfo.tiyannums}}课时</span>
                 </view>
+                  <view wx:if="{{userInfo.deadline}}" class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">有效期</label>
+                    <span class="weui-form-preview__value" style="color:green;">{{userInfo.deadline}}</span>
+                </view>
                
               
         </view>

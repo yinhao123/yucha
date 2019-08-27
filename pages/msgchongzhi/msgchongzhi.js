@@ -6,14 +6,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    info:"你的课时数不足，请到前台充值课时，充值完成后点击我已充值即可。"
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+   
+    this.setData({
+      info:options.info
+    })
   },
 
   /**

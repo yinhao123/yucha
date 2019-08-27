@@ -115,7 +115,7 @@ Page({
             param: webData,
             method: "POST",
             success: function (data) {
-              console.log(data);
+             
               if(data.success){
               wx.showToast({
                 title: '取消成功',
@@ -147,45 +147,7 @@ Page({
         title: '该课程已取消预约',
         icon: 'none'
       })
-      // 重新预约该课程
-      // wx.showModal({
-      //   title: '系统提示',
-      //   content: '你确定要重新预约该课程？',
-      //   success(res) {
-      //     if (res.confirm) {
-
-      //       var webData = {
-      //         "userid": userid,
-      //         "appointmentid": appointmentid
-      //       }
-
-      //       utils.getWebDataWithPost({
-      //         url: "AdminSystem/eyas/wechat/saveAppointmentInfo",
-      //         param: webData,
-      //         method: "POST",
-      //         success: function (data) {
-      //           console.log(data);
-      //           if (data.success) {
-      //             wx.showToast({
-      //               title: '预约成功',
-      //             })
-      //             that.onLoad();
-      //             // 并且将取消预约设置为 已取消 颜色灰色 
-      //           } else {
-      //             wx.showToast({
-      //               title: data.errormsg ? data.errormsg : "预约失败",
-      //               icon: 'none',
-      //             })
-      //           }
-
-      //         }
-      //       })
-
-      //     } else if (res.cancel) {
-      //       console.log('用户点击取消')
-      //     }
-      //   }
-      // })
+     
     }
   }
 })

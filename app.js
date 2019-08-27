@@ -18,7 +18,7 @@ App({
                 code: res.code
               },
               success(res) {
-                console.log(res.data.data.openid)
+              //  console.log(res.data.data.openid)
                 getApp().globalData.openid = res.data.data.openid
                 //将这个openid保存在本地缓存中
                 wx.setStorage({
@@ -35,7 +35,7 @@ App({
                   param: userData,
                   method: "GET",
                   success: function (data) {
-                    console.log(data);
+                 //   console.log(data);
 
                     getApp().globalData.user = data;
                   
@@ -44,7 +44,7 @@ App({
               }
             })
           } else {
-            console.log('登录失败！' + res.errMsg);
+           // console.log('登录失败！' + res.errMsg);
           }
         }
       })
@@ -67,55 +67,6 @@ App({
     wx.setStorageSync('logs', logs)
     var that = this;
 
-    // wx.login({
-    //   success: res => {
-    //     // 发送 res.code 到后台换取 openId, sessionKey, unionId
-    //     if (res.code) {
-    //       // 发起网络请求
-    //       wx.request({
-    //         url: "https://sanzhitu.iaimai.com:8080/AdminSystem/eyas/wechat/getOpenid",
-    //         data: {
-    //           code: res.code
-    //         },
-    //         success(res) {
-    //           // console.log(res.data.data.openid)
-    //           getApp().globalData.openid = res.data.data.openid
-    //           //将这个openid保存在本地缓存中
-    //           wx.setStorage({
-    //             key: 'openid',
-    //             data: res.data.data.openid
-    //           })
-
-    //           var userData = {
-    //             openid: res.data.data.openid
-    //           }
-    //           utils.getWebDataWithPostOrGet({
-    //             url: "AdminSystem/eyas/wechat/getUserInfoByOpenid",
-    //             param: userData,
-    //             method: "GET",
-    //             success: function (data) {
-    //               return new Promise(function(resolve,reject){
-    //                     if(data){
-    //                         //  resolve(console.log(data))
-    //                       getApp().globalData.user = data;
-    //                       resolve(data)
-    //                     }else{
-    //                       reject("失败.....")
-    //                     }
-    //               }).then(res=>{
-    //                 getApp().globalData.cMember = res.success 
-    //                   console.log(res)
-    //               })
-
-    //             }
-    //           })
-    //         }
-    //       })
-    //     } else {
-    //       console.log('登录失败！' + res.errMsg);
-    //     }
-    //   }
-    // })
    
     // 获取用户信息
     wx.getSetting({

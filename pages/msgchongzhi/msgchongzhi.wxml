@@ -4,7 +4,7 @@
         <icon type="info" size="100" />
         <view class="weui-msg__text-area">
             <text class="weui-msg__title">请去充值</text>
-            <view class="weui-msg__desc">你的课时数不足，请到前台充值课时，充值完成后点击我已充值即可。</view>
+            <view class="weui-msg__desc">{{info}}</view>
         </view>
       
 

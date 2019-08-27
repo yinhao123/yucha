@@ -5,10 +5,8 @@
       <view class="placeholder ">课程名称</view>
     </view>
     <view class="weui-flex__item">
-      <!-- <view class="weui-cell__bd placeholder  borderL" bindtap='changeCourses' role="" aria-label="">
-        {{classinfo.classname}}
-      </view> -->
-      <picker class="weui-cell__bd borderL" bindchange="bindPickerChange" value="{{index}}" range="{{courseslist}}" range-key="{{'classname'}}" >
+      
+      <picker class="weui-cell__bd borderL" bindchange="bindPickerChange" value="{{index}}" data-calssid='{{courseslist[index]}}' range="{{courseslist}}" range-key="{{'classname'}}" >
            <view class="weui-select  placeholder weui-select_in-select-after">{{courseslist[index].classname}}</view>
        </picker>
     </view>
@@ -33,10 +31,9 @@
 
     <view class='courseBox' bindtap='seeDetails' data-index='{{item}}'>
       <view class='headIco'>
-        <!-- <image src='/images/avatar.jpg'></image> -->
+     
       </view>
-      <!-- <view class='head'>
-      </view> -->
+      
       <view class='c-info'>
         <text class='title'>{{item.classname}}</text>
         <view>
@@ -52,7 +49,7 @@
           <text> {{item.coachname}}</text>
         </view>
         <view>
-          <!-- <image src='/images/jiaolian.png' style="width: 12px; height: 12px"></image> -->
+      
           <text>适用年龄：{{item.agerange}}</text>
         </view>
       </view>

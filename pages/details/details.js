@@ -17,7 +17,7 @@ Page({
 
   },
   checkboxChange: function (e) {
-    console.log('checkbox发生change事件，携带value值为：', e.detail);
+  
     this.setData({
       childrens:e.detail.value
     })
@@ -52,8 +52,7 @@ Page({
    * 选课之前先选择孩子
    */
   bindCountryChange: function (e) {
-    console.log('picker country 发生选择改变，携带值为', e.detail.value);
-
+ 
     this.setData({
       countryIndex: e.detail.value
     })
@@ -78,9 +77,7 @@ Page({
   appointClass(e)
   {
 
-    console.log("孩子的数量");
-    console.log(this.data.childrens);
-    console.log(this.data.childrens.length);
+  
     if(this.data.childrens.length == 0){
        wx.showModal({
          title: '系统提示',
@@ -95,12 +92,11 @@ Page({
        })
       
     }else{
-      console.log("childrens类型" + typeof (this.data.childrens));
+     
     let userid = parseInt(this.data.userid);
     let recordid = this.data.record.recordid;
       let childrens = parseInt(this.data.childrens.join());
-    console.log("userid"+userid);
-    console.log("recordid"+recordid);
+  
 
     var th = this;
     // 预约之前前进行确认提示
@@ -128,8 +124,7 @@ Page({
             },
             method: "POST",
             success: function (data) {
-              console.log("Get back data");
-              console.log(data);
+             
               if (data.data.success) {
                 // 跳转到约课成功的页面
                 wx.redirectTo({
@@ -145,7 +140,7 @@ Page({
             }
           })
         } else if (res.cancel) {
-          console.log('用户点击取消')
+         
         }
       }
     })
@@ -185,10 +180,9 @@ Page({
       param: webData,
       method: "GET",
       success: function (data) {
-        console.log(data.success);
+       
         if (data.success) {
-          console.log("Success get Children info.");
-          console.log(data.data.list);
+         
           let ch = data.data.list;
           
           if(ch.length == 1){
@@ -198,10 +192,10 @@ Page({
               return obj;
             });
 
-            console.log(ch2);
+          
             let arrayChildrens = new Array();
             arrayChildrens[0]=ch2[0].cid
-            console.log("arrayChildrens类型" + typeof (arrayChildrens));
+          
             // 如果只有一个孩子，则默认是选中的
             that.setData({
               childrens: arrayChildrens
@@ -218,7 +212,7 @@ Page({
             children:data.data.list
           })
         } else {
-         console.exception("请求孩子信息失败");
+        
         }
       }
     })

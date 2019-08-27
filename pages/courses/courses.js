@@ -11,8 +11,6 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    // background: ['demo-text-1', 'demo-text-2', 'demo-text-3'],
-  
     indicatorDots: true,
     vertical: false,
     autoplay: true,
@@ -24,15 +22,13 @@ Page({
     list:null,
     isMember:false,
     openId:null
-   
   },
   //事件处理函数
   bindViewTap: function () {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+   
   },
-  onLoad: function () {
+  onLoad:function(){},
+  onShow: function () {
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
@@ -62,7 +58,8 @@ Page({
                 success: function (data) {
                   return new Promise(function (resolve, reject) {
                     if (data) {
-                      //  resolve(console.log(data))
+                     // 这儿判断一下如果是 
+                     
                       getApp().globalData.user = data;
                       resolve(data);
                       wx.setStorage({
@@ -71,16 +68,24 @@ Page({
                       })
                       if (data.data.userInfo.restclass < 1){
                             wx.redirectTo({
-                              url: '/pages/msgchongzhi/msgchongzhi',
+                              url: '/pages/msgchongzhi/msgchongzhi?info="你的课时数不足，请到前台充值课时，充值完成后点击我已充值即可。"',
                             })
+                      } else if (data.data.userInfo.validflag == "0"){
+                        wx.redirectTo({
+                          url: '/pages/msgchongzhi/msgchongzhi?info="您的账号已无效，请去门店续费充值。"',
+                        })
+                      } else if (data.data.userInfo.dlvalidflag == "0"){
+                         wx.redirectTo({
+                          url: '/pages/msgchongzhi/msgchongzhi?info="您的充值已过期，请去门店续费。"',
+                         })
                       }
+
                     } else {
                       reject("失败.....")
                     }
                   }).then(res => {
                     getApp().globalData.cMember = res.success
-                    console.log(res)
-                    console.log(app.globalData.cMember);
+                 
                     if (!app.globalData.cMember) {
                       wx.redirectTo({
                         url: '../reg/reg',
@@ -93,7 +98,7 @@ Page({
             }
           })
         } else {
-          console.log('登录失败！' + res.errMsg);
+      
         }
       }
     })
@@ -101,13 +106,8 @@ Page({
     var that = this;
     wx.showLoading({
       title: '加载中',
-    })
-   
+    }) 
     wx.hideLoading();
-
-
-
-  
     this.setData({
       icon20: base64.icon20,
       icon60: base64.icon60
@@ -140,9 +140,9 @@ Page({
     }
     
     var user =  wx.getStorageSync("user");
-     console.log("用户id");
+   
      var userid = user.data.userInfo.userid;
-     console.log(userid);
+    
     var webData = {
       "userid":userid
     }
@@ -152,8 +152,7 @@ Page({
       param: webData,
       method: "GET",
       success: function (data) {
-        console.log("课程列表");
-        console.log(data.data.list);
+     
        wx.setStorage({
          key: 'courseslist',
          data: data.data.list,
@@ -166,7 +165,7 @@ Page({
     })
   },
   getUserInfo: function (e) {
-    console.log(e)
+   
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
